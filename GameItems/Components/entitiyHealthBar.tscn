@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnugfkrra0amc"]
+
+[ext_resource type="Texture2D" uid="uid://dfspa6smtxi0m" path="res://textures/misc.png" id="1_3sjes"]
+[ext_resource type="Script" uid="uid://dlpupdq2odgk4" path="res://coolstuff/components/entityHealthBar.gd" id="2_egrqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nywup"]
+resource_local_to_scene = true
+atlas = ExtResource("1_3sjes")
+region = Rect2(128, 1020, 16, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwd3m"]
+resource_local_to_scene = true
+atlas = ExtResource("1_3sjes")
+region = Rect2(128, 1016, 16, 4)
+
+[sub_resource type="Animation" id="Animation_0bq1t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y0vmw"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jvsfa"]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2jcr"]
+_data = {
+&"RESET": SubResource("Animation_0bq1t"),
+&"fade": SubResource("Animation_y0vmw"),
+&"show": SubResource("Animation_jvsfa")
+}
+
+[node name="EntityHealthBar" type="TextureProgressBar"]
+z_index = 50
+offset_left = -8.0
+offset_top = -2.0
+offset_right = 32.0
+offset_bottom = 38.0
+value = 76.0
+texture_under = SubResource("AtlasTexture_nywup")
+texture_progress = SubResource("AtlasTexture_pwd3m")
+script = ExtResource("2_egrqt")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u2jcr")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
