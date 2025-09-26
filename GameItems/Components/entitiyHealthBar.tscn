@@ -1,16 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnugfkrra0amc"]
+[gd_scene load_steps=8 format=3 uid="uid://dnugfkrra0amc"]
 
-[ext_resource type="Texture2D" uid="uid://dfspa6smtxi0m" path="res://textures/misc.png" id="1_3sjes"]
-[ext_resource type="Script" uid="uid://dlpupdq2odgk4" path="res://coolstuff/components/entityHealthBar.gd" id="2_egrqt"]
+[ext_resource type="Script" uid="uid://cr60re4xkvncb" path="res://GameItems/Components/entityHealthBar.gd" id="1_qb5mn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nywup"]
 resource_local_to_scene = true
-atlas = ExtResource("1_3sjes")
 region = Rect2(128, 1020, 16, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwd3m"]
 resource_local_to_scene = true
-atlas = ExtResource("1_3sjes")
 region = Rect2(128, 1016, 16, 4)
 
 [sub_resource type="Animation" id="Animation_0bq1t"]
@@ -111,7 +108,7 @@ offset_bottom = 38.0
 value = 76.0
 texture_under = SubResource("AtlasTexture_nywup")
 texture_progress = SubResource("AtlasTexture_pwd3m")
-script = ExtResource("2_egrqt")
+script = ExtResource("1_qb5mn")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

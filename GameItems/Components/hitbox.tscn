@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bm53fhv67jkbr"]
 
-[ext_resource type="Script" uid="uid://cscvmk8di0kl7" path="res://coolstuff/components/Hitbox.gd" id="1_r1wu0"]
+[ext_resource type="Script" uid="uid://opso26rebe21" path="res://GameItems/Components/hurtbox.gd" id="1_t3ojt"]
 
 [node name="Hitbox" type="Area2D"]
-script = ExtResource("1_r1wu0")
+script = ExtResource("1_t3ojt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 debug_color = Color(0.898039, 0.239216, 0.509804, 0.419608)

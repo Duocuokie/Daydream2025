@@ -13,4 +13,3 @@ func switch2DScene(newPackedScene : PackedScene) -> void:
 	scene2d.add_child(NewScene)
 	current2D = scene2d.get_child(0)
 	
-	

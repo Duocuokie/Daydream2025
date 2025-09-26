@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dr10bowde1d60"]
 
-[ext_resource type="Script" uid="uid://kj5wid6br2yu" path="res://coolstuff/components/spawnerComponent.gd" id="1_urums"]
+[ext_resource type="Script" uid="uid://bduxbproj50ck" path="res://GameItems/Components/spawnerComponent.gd" id="1_bbb1y"]
 
 [node name="spawnerComponent" type="Node2D"]
-script = ExtResource("1_urums")
+script = ExtResource("1_bbb1y")
