@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="Daydream2025"
+run/main_scene="uid://f67auqymw1hc"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Textures/icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
 
 [rendering]
 
