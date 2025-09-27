@@ -144,5 +144,4 @@ func _on_recoil_timer_timeout() -> void:
 
 
 func _on_health_die() -> void:
-	SignalBus.playerDie.emit()
 	fsm.change_state(nostate)
