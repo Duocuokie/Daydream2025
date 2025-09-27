@@ -57,6 +57,7 @@ func _ready():
 	
 func _physics_process(delta):
 	#print(wasNotHolding)
+	importantStats.PlayerPos = global_position
 	rotation = global_position.angle_to_point(get_global_mouse_position())
 	if Input.is_action_pressed("shoot"):
 		if !isShot:
@@ -77,7 +78,6 @@ func _physics_process(delta):
 		
 		charge = 0
 		wasNotHolding = true
-		importantStats.PlayerPos = global_position
 
 func _unhandled_input(_event: InputEvent) -> void:
 	#shooting
