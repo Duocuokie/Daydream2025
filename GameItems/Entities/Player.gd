@@ -3,12 +3,14 @@ class_name Player
 
 #x
 
+var maxShots := 4
+var currentShots := maxShots
 
 #movement variables
 
-var maxSpeed : float = 125
-var acceleration = 750
-var friction = 1000
+var maxSpeed : float = 250
+var acceleration = 1750
+var friction = 2500
 
 #getting hurt variables
 

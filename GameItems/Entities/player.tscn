@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=16 format=3 uid="uid://uvf3ppg3smev"]
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="4_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
+[ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2hpnf"]
 
@@ -64,3 +65,5 @@ animTree = NodePath("../../AnimationTree")
 [node name="playerMove" parent="StateMachine" node_paths=PackedStringArray("player", "animTree") instance=ExtResource("6_ah1mh")]
 player = NodePath("../..")
 animTree = NodePath("../../AnimationTree")
+
+[node name="spawnerComponent" parent="." instance=ExtResource("8_1mxt5")]
