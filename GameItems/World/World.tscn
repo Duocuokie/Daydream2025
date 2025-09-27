@@ -34,7 +34,16 @@ centered = false
 [node name="Player" parent="." instance=ExtResource("4_vx8js")]
 position = Vector2(1, 1)
 
-[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player/PlayerCharacter" index="13"]
+[node name="PlayerCharacter" parent="Player" index="0"]
+baseSpeed = 200
+baseAcceleration = 1750
+baseFriction = 2000
+sacSpeed = 350
+sacAcceleration = 2000
+sacFriction = 2500
+recoildAcceleration = 1000
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player/PlayerCharacter" index="12"]
 remote_path = NodePath("../../../Enemies/Spawners")
 update_rotation = false
 update_scale = false

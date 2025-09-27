@@ -1,15 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=27 format=3 uid="uid://uvf3ppg3smev"]
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="3_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
 [ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="4_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
+[ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="5_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
-[ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://dmvnuqj8qoe72" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
 [ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
 
@@ -44,6 +44,9 @@ states/Idle/position = Vector2(342, 82)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_mw144")
 states/Run/position = Vector2(583, 94)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1mxt5"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7skad"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ah1mh"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_cs6y2")]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g17nx"]
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5yfa"]
 
@@ -132,7 +135,19 @@ parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="Hitbox" parent="." instance=ExtResource("5_i5yfa")]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 0
+monitorable = false
+damage = 50
+invis = 0.25
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_g17nx")
+
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_2hpnf")]
+unique_name_in_owner = true
 collision_layer = 32
 collision_mask = 128
 health = NodePath("../Health")
@@ -154,8 +169,6 @@ animTree = NodePath("../../AnimationTree")
 player = NodePath("../..")
 animTree = NodePath("../../AnimationTree")
 
-[node name="spawnerComponent" parent="." instance=ExtResource("8_1mxt5")]
-
 [node name="RecoilTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.2
@@ -176,4 +189,5 @@ libraries = {
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]
 
+[editable path="Hitbox"]
 [editable path="Hurtbox"]
