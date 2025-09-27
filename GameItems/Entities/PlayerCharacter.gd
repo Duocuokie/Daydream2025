@@ -21,10 +21,12 @@ var friction = baseFriction
 #getting hurt variables
 
 var hurterPos : Vector2
+var wasNotHolding := true
 
 
 @export var bodyProj: BodyProj 
 var isShot := false : set = isShotSetter
+var charge := 0
 
 
 
@@ -51,15 +53,31 @@ func _ready():
 	bodyProj.bodyCollected.connect(func(): isShot = false)
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		if !isShot:
-			isShot = true
-			var direction = global_position.direction_to(get_global_mouse_position())
-			bodyProj.shoot(global_position, direction, 1000)
+	#shooting
+	if Input.is_action_just_released("shoot"):
+		if !isShot :
+			%Sprite2D.frame = 0
+			if wasNotHolding:
+				isShot = true
+				var direction = global_position.direction_to(get_global_mouse_position())
+				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
+		
+		
+		charge = 0
+		wasNotHolding = true
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	rotation = global_position.angle_to_point(get_global_mouse_position())
-	pass
+	if Input.is_action_pressed("shoot"):
+		if !isShot:
+			if wasNotHolding:
+				%Sprite2D.frame = 2
+			charge += 100 * delta
+	#latching
+		else:
+			wasNotHolding = false
+			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
+
 	
 func isShotSetter(value):
 	isShot = value
