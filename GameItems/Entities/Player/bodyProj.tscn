@@ -11,7 +11,7 @@ radius = 13.0
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yemry"]
-radius = 9.0
+radius = 24.0
 
 [node name="BodyProj" type="CharacterBody2D"]
 collision_layer = 8
@@ -24,6 +24,7 @@ region_enabled = true
 region_rect = Rect2(0, 48, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_jubb6")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_8ino8")]
