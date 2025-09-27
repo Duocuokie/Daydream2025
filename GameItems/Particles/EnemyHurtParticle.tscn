@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://80sgbbqpxhxf"]
+
+[ext_resource type="Texture2D" uid="uid://baldkoscywkii" path="res://Textures/enemyHurtParticles.png" id="1_jip0v"]
+
+[sub_resource type="Gradient" id="Gradient_3xluf"]
+colors = PackedColorArray(0.88597625, 0.00028320134, 0.17608759, 1, 0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d1rbh"]
+gradient = SubResource("Gradient_3xluf")
+
+[sub_resource type="Curve" id="Curve_p601n"]
+_data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_80btf"]
+curve = SubResource("Curve_p601n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2ddp"]
+particle_flag_disable_z = true
+spread = 25.98
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 10.0
+linear_accel_max = 35.0
+scale_curve = SubResource("CurveTexture_80btf")
+color_initial_ramp = SubResource("GradientTexture1D_d1rbh")
+
+[node name="EnemyHurtParticle" type="GPUParticles2D"]
+amount = 10
+amount_ratio = 0.75
+texture = ExtResource("1_jip0v")
+explosiveness = 1.0
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_f2ddp")
