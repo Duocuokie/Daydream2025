@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jpvdc"]
 [ext_resource type="Texture2D" uid="uid://b0gq2mhb7ujlr" path="res://Textures/backgroundtile.png" id="3_60hvp"]
-[ext_resource type="PackedScene" uid="uid://camfpsvix4q2y" path="res://GameItems/Entities/Enemies/BasicEnemy.tscn" id="4_irwdp"]
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
+[ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jpvdc"]
 texture = ExtResource("2_jpvdc")
@@ -31,8 +31,20 @@ repeat_times = 40
 texture = ExtResource("3_60hvp")
 centered = false
 
-[node name="Enemy" parent="." instance=ExtResource("4_irwdp")]
-position = Vector2(139, 66)
-
 [node name="Player" parent="." instance=ExtResource("4_vx8js")]
 position = Vector2(1, 1)
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player/PlayerCharacter" index="13"]
+remote_path = NodePath("../../../Enemies/Spawners")
+update_rotation = false
+update_scale = false
+
+[node name="Enemies" parent="." instance=ExtResource("5_vx8js")]
+
+[node name="Spawners" parent="Enemies" index="0"]
+position = Vector2(1, 1)
+
+[editable path="Player"]
+[editable path="Player/PlayerCharacter"]
+[editable path="Player/PlayerCharacter/Hurtbox"]
+[editable path="Enemies"]
