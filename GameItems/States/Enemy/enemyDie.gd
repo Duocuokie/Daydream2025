@@ -3,7 +3,7 @@ class_name EnemyDie
 
 @export var enemy : Enemy
 @export var anim : AnimationPlayer
-@export var enemyRoot : Node2D
+
 
 @onready var camera = get_tree().current_scene.get_node("CameraMover") as camerMover
 
@@ -25,4 +25,4 @@ func _physics_process(_delta):
 		
 		
 func dieTime() -> void :
-	enemyRoot.call_deferred("queue_free")
+	enemy.call_deferred("queue_free")
