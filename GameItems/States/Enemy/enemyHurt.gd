@@ -8,7 +8,7 @@ class_name EnemyHurt
 var wkb : int
 var kbres : float
 
-@onready var camera = get_tree().current_scene.get_node("CameraMover") as camerMover
+
 
 @export var Bounce : bool = false
 

@@ -3,7 +3,7 @@ class_name PlayerCharacter
 
 #xasdafdds
 
-
+@export var importantStats : Resource
 
 #movement variables
 @export var baseSpeed = 200
@@ -67,11 +67,9 @@ func _physics_process(delta):
 			wasNotHolding = false
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
 	if Input.is_action_just_released("shoot"):
-		print(wasNotHolding)
 		if !isShot :
 			%Sprite2D.frame = 0
 			if wasNotHolding:
-				print(wasNotHolding, "shoot")
 				isShot = true
 				var direction = global_position.direction_to(get_global_mouse_position())
 				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
@@ -79,6 +77,7 @@ func _physics_process(delta):
 		
 		charge = 0
 		wasNotHolding = true
+		importantStats.PlayerPos = global_position
 
 func _unhandled_input(_event: InputEvent) -> void:
 	#shooting

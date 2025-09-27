@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://camfpsvix4q2y"]
+[gd_scene load_steps=20 format=3 uid="uid://camfpsvix4q2y"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_473sd"]
+[ext_resource type="Script" uid="uid://wbjqgxcagmmk" path="res://GameItems/rescources/enemyStats.gd" id="2_2v2ig"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="2_6onyf"]
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_k376a"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="3_k376a"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="4_m5klc"]
 [ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="5_2v2ig"]
@@ -9,6 +11,31 @@
 [ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="7_2wxxd"]
 [ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="8_5nwg3"]
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="9_wvs5r"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="10_m5klc"]
+
+[sub_resource type="Resource" id="Resource_6rbwg"]
+script = ExtResource("2_2v2ig")
+maxSpeed = 250
+acceleration = 2000
+friction = 2000
+maxHp = 100
+baseDamage = 10
+metadata/_custom_type_script = "uid://wbjqgxcagmmk"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k376a"]
+radius = 13.038404
+
+[sub_resource type="Animation" id="Animation_2v2ig"]
+resource_name = "move"
+
+[sub_resource type="Animation" id="Animation_6rbwg"]
+resource_name = "die"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wxxd"]
+_data = {
+&"die": SubResource("Animation_6rbwg"),
+&"move": SubResource("Animation_2v2ig")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtapn"]
 resource_local_to_scene = true
@@ -19,30 +46,41 @@ resource_local_to_scene = true
 region = Rect2(128, 1016, 16, 4)
 
 [node name="Enemy" instance=ExtResource("1_473sd")]
+stats = SubResource("Resource_6rbwg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_k376a")
+region_enabled = true
+region_rect = Rect2(0, 128, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_k376a")
 
 [node name="Hitbox" parent="." index="2" instance=ExtResource("2_6onyf")]
 
-[node name="Hurtbox" parent="." index="3" instance=ExtResource("3_k376a")]
+[node name="Hurtbox" parent="." index="3" node_paths=PackedStringArray("health") instance=ExtResource("3_k376a")]
+health = NodePath("../Health")
 
 [node name="Health" parent="." index="4" instance=ExtResource("4_m5klc")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_2wxxd")
+}
 
 [node name="EntityHealthBar" parent="." index="6" instance=ExtResource("5_2v2ig")]
 texture_under = SubResource("AtlasTexture_mtapn")
 texture_progress = SubResource("AtlasTexture_ath44")
 
-[node name="StateMachine" parent="." index="7" instance=ExtResource("6_6rbwg")]
+[node name="StateMachine" parent="." index="7" node_paths=PackedStringArray("state") instance=ExtResource("6_6rbwg")]
+state = NodePath("EnemyMove")
 
 [node name="enemyIdle" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("7_2wxxd")]
 enemy = NodePath("../..")
 anim = NodePath("../../AnimationPlayer")
 
 [node name="EnemyMove" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy", "anim", "spr") instance=ExtResource("8_5nwg3")]
+importantStats = ExtResource("10_m5klc")
 enemy = NodePath("../..")
 anim = NodePath("../../AnimationPlayer")
 spr = NodePath("../../Sprite2D")
@@ -52,3 +90,8 @@ script = ExtResource("9_wvs5r")
 enemy = NodePath("../..")
 anim = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://bkg071dhc6y8c"
+
+[connection signal="healthChanged" from="Health" to="EntityHealthBar" method="_on_health_health_changed"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

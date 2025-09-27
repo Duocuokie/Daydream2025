@@ -1,12 +1,12 @@
 extends State
 class_name EnemyMove
+@export var importantStats : Resource
 
 @export var Bounce : bool = false
 
 @export var enemy : Enemy
 @export var anim : AnimationPlayer
 @export var spr : Sprite2D
-
 
 signal PlayerExit
 
@@ -25,10 +25,10 @@ func _exit_state() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta):
-	var target = Vector2.ZERO
+	var target = importantStats.PlayerPos
 	if target != null:
-		var directionToTarget = (target.global_position - enemy.global_position).normalized()
-		enemy.velocity = enemy.velocity.move_toward(directionToTarget * enemy.stats.maxSpeed * enemy.stats.Mspd, enemy.stats.acceleration*delta)
+		var directionToTarget = (target - enemy.global_position).normalized()
+		enemy.velocity = enemy.velocity.move_toward(directionToTarget * enemy.stats.maxSpeed , enemy.stats.acceleration*delta)
 		if Bounce:
 			var collision = enemy.move_and_collide(enemy.velocity * delta)
 			if collision:
@@ -36,7 +36,7 @@ func _physics_process(delta):
 				enemy.velocity = bounce_velocity
 		else:
 			enemy.move_and_slide()
-		var lookdir = sign(enemy.global_position.direction_to(target.global_position)).x
+		var lookdir = sign(enemy.global_position.direction_to(target)).x
 		if lookdir != 0:
 			spr.scale.x = lookdir
 		else:
