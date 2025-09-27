@@ -89,7 +89,7 @@ func isShotSetter(value):
 	if value:
 		%Sprite2D.frame = 1
 		maxSpeed = sacSpeed
-		acceleration = sacAcceleration
+		acceleration = sacAcceleration	
 		friction = sacFriction
 	else:
 		%Sprite2D.frame = 0
