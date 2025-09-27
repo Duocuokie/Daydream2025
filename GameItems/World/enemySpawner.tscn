@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc8foashf08ur"]
+
+[ext_resource type="Script" uid="uid://bcckgw7qomptc" path="res://GameItems/World/EnemySpawner.gd" id="1_63vqd"]
+[ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="2_i0ei4"]
+[ext_resource type="PackedScene" uid="uid://camfpsvix4q2y" path="res://GameItems/Entities/Enemies/BasicEnemy.tscn" id="3_568dl"]
+[ext_resource type="Texture2D" uid="uid://c4madqjtodboc" path="res://Textures/icon.svg" id="4_w25cc"]
+
+[sub_resource type="Curve" id="Curve_63vqd"]
+_limits = [0.0, 20.0, 0.0, 120.0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 1, Vector2(15, 2), 0.0, 0.062330533, 1, 1, Vector2(47.087, 4), 0.062330533, 0.0, 1, 1, Vector2(65.894, 4), 0.0, 0.0, 1, 0]
+point_count = 4
+
+[node name="Enemies" type="Node2D"]
+script = ExtResource("1_63vqd")
+graphs = Array[Curve]([SubResource("Curve_63vqd")])
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Enemy1" type="Node2D" parent="Spawners"]
+unique_name_in_owner = true
+
+[node name="spawnerComponent" parent="Spawners/Enemy1" instance=ExtResource("2_i0ei4")]
+position = Vector2(512, 0)
+scene = ExtResource("3_568dl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawners/Enemy1/spawnerComponent"]
+texture = ExtResource("4_w25cc")
+
+[node name="Timer" type="Timer" parent="Spawners"]
+autostart = true
+
+[node name="Enemies1" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Spawners/Timer" to="." method="_on_timer_timeout"]
