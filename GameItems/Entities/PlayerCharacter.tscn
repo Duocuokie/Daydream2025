@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=19 format=3 uid="uid://uvf3ppg3smev"]
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
 [ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
+[ext_resource type="PackedScene" uid="uid://c7fv4wc7nyluo" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
+[ext_resource type="PackedScene" uid="uid://qmjbw2kvwexc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jrtm"]
 radius = 24.0
@@ -79,3 +81,9 @@ animTree = NodePath("../../AnimationTree")
 [node name="RecoilTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="HurtParticle" parent="Particles" instance=ExtResource("9_oivkm")]
+
+[node name="ShootParticles" parent="Particles" instance=ExtResource("10_3pkpc")]

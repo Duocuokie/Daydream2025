@@ -1,27 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://qmjbw2kvwexc"]
+[gd_scene load_steps=6 format=3 uid="uid://qmjbw2kvwexc"]
+
+[sub_resource type="Gradient" id="Gradient_7rj46"]
+colors = PackedColorArray(0.924917, 0.6937054, 0.23107749, 1, 1.0142322, 1.0142322, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d1rbh"]
+gradient = SubResource("Gradient_7rj46")
 
 [sub_resource type="Curve" id="Curve_7rj46"]
 _data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_7rj46"]
-colors = PackedColorArray(0.924917, 0.6937054, 0.23107749, 1, 1.0142322, 1.0142322, 0, 1)
+[sub_resource type="CurveTexture" id="CurveTexture_80btf"]
+curve = SubResource("Curve_7rj46")
 
-[node name="shoot" type="Node2D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1x31m"]
+particle_flag_disable_z = true
+spread = 25.98
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 10.0
+linear_accel_max = 35.0
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_80btf")
+color = Color(0.63539743, 0.51964545, 0.23129603, 1)
+color_initial_ramp = SubResource("GradientTexture1D_d1rbh")
+hue_variation_max = 1.0
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="ShootParticles" type="GPUParticles2D"]
+emitting = false
 amount = 10
 lifetime = 0.75
 explosiveness = 1.0
-spread = 25.98
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-linear_accel_min = 10.0
-linear_accel_max = 35.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_7rj46")
-color = Color(0.63539743, 0.51964545, 0.23129603, 1)
-color_initial_ramp = SubResource("Gradient_7rj46")
-hue_variation_max = 1.0
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_1x31m")

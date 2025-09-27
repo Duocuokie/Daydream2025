@@ -1,26 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7fv4wc7nyluo"]
+[gd_scene load_steps=6 format=3 uid="uid://c7fv4wc7nyluo"]
+
+[sub_resource type="Gradient" id="Gradient_yiukk"]
+colors = PackedColorArray(1, 0.95686275, 0, 1, 0.67180973, 0.50690144, 0.17546591, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xt6fx"]
+gradient = SubResource("Gradient_yiukk")
 
 [sub_resource type="Curve" id="Curve_p4xnq"]
 _data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_yiukk"]
-colors = PackedColorArray(1, 0.95686275, 0, 1, 0.67180973, 0.50690144, 0.17546591, 1)
+[sub_resource type="CurveTexture" id="CurveTexture_fy3gb"]
+curve = SubResource("Curve_p4xnq")
 
-[node name="hurtparticle" type="Node2D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ayh7"]
+particle_flag_disable_z = true
+spread = 25.98
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 10.0
+linear_accel_max = 35.0
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_fy3gb")
+color_initial_ramp = SubResource("GradientTexture1D_xt6fx")
+hue_variation_max = 1.0
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="HurtParticle" type="GPUParticles2D"]
+emitting = false
 amount = 10
 lifetime = 0.75
 explosiveness = 1.0
-spread = 25.98
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-linear_accel_min = 10.0
-linear_accel_max = 35.0
-scale_amount_min = 4.0
-scale_amount_max = 4.0
-scale_amount_curve = SubResource("Curve_p4xnq")
-color_initial_ramp = SubResource("Gradient_yiukk")
-hue_variation_max = 1.0
+fixed_fps = 0
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_2ayh7")
