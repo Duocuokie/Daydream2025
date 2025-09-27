@@ -17,6 +17,7 @@ func shoot(pos, direction, speed) -> void:
 	timer.start()
 	collectArea.monitoring = false
 	visible = true
+	%Hitbox.set_deferred("monitorable", true)
 	global_position = pos
 	velocity = direction * speed
 	
@@ -32,6 +33,8 @@ func _on_collect_area_body_entered(_body: Node2D) -> void:
 	set_physics_process(false)
 	visible = false
 	bodyCollected.emit()
+	%Hitbox.set_deferred("monitorable", false)
+
 
 
 func _on_timer_timeout() -> void:

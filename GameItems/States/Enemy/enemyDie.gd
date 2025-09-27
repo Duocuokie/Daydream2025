@@ -5,7 +5,6 @@ class_name EnemyDie
 @export var anim : AnimationPlayer
 
 
-@onready var camera = get_tree().current_scene.get_node("CameraMover") as camerMover
 
 
 func _ready():

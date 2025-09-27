@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jubb6"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="3_8ino8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_flavl"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jubb6"]
 radius = 13.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jubb6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_flavl"]
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yemry"]
@@ -23,13 +23,18 @@ texture = ExtResource("2_jubb6")
 region_enabled = true
 region_rect = Rect2(0, 48, 32, 32)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jubb6")
+
 [node name="Hitbox" parent="." instance=ExtResource("3_8ino8")]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 0
+monitorable = false
+knockback = 500
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_flavl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_jubb6")
 
 [node name="CollectArea" type="Area2D" parent="."]
 collision_layer = 0
