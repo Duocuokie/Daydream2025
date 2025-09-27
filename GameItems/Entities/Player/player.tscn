@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3m68cqxlv1jb"]
+[gd_scene load_steps=6 format=3 uid="uid://b3m68cqxlv1jb"]
 
 [ext_resource type="Script" uid="uid://byfr2i7fno0v1" path="res://GameItems/Entities/Player/Player.gd" id="1_54fnr"]
 [ext_resource type="PackedScene" uid="uid://uvf3ppg3smev" path="res://GameItems/Entities/Player/PlayerCharacter.tscn" id="1_t3336"]
 [ext_resource type="PackedScene" uid="uid://c6fwo15o0g6wh" path="res://GameItems/Entities/Player/bodyProj.tscn" id="2_54fnr"]
-[ext_resource type="PackedScene" uid="uid://cch114jg65kwd" path="res://GameItems/Particles/ShootParticle.tscn" id="3_mpb17"]
 [ext_resource type="PackedScene" uid="uid://bem02o7ehhy4a" path="res://GameItems/World/levelCamera.tscn" id="4_k4mav"]
 [ext_resource type="PackedScene" uid="uid://dsa3jut4qa2rj" path="res://GameItems/Entities/Player/playerHealthBar.tscn" id="6_yalaj"]
 
@@ -12,10 +11,6 @@ script = ExtResource("1_54fnr")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("bodyProj") instance=ExtResource("1_t3336")]
 bodyProj = NodePath("../BodyProj")
-
-[node name="ShootParticles" parent="PlayerCharacter" instance=ExtResource("3_mpb17")]
-z_index = 50
-one_shot = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
 remote_path = NodePath("../../levelCamera")

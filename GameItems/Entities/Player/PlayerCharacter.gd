@@ -69,15 +69,17 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
 			%Sprite2D.frame = 3
 	if Input.is_action_just_released("shoot"):
-		if !isShot: # RECOLLECTED ALREADY, FAKE SHOOT
+		if !isShot: 
 			%Sprite2D.frame = 0
-			if wasNotHolding:
+			if wasNotHolding: # SHOOT
 				isShot = true
+				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
 				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
-		else: # SHOT
+			else: # FAKE SHOT
+				pass
+		else: # ON THE WAY
 			$Sprite2D.frame = 1
-			shoot_particles.emitting = true
 		
 		charge = 0
 		wasNotHolding = true
