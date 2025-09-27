@@ -15,6 +15,10 @@ run/main_scene="uid://f67auqymw1hc"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://Textures/icon.svg"
 
+[autoload]
+
+SignalBus="*res://GameItems/Entities/signalBus.gd"
+
 [display]
 
 window/size/viewport_width=640
