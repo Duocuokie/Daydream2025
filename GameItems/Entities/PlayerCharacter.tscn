@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://uvf3ppg3smev"]
 
-[ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/PlayerCharacter.gd" id="1_88lmo"]
+[ext_resource type="Script" path="res://GameItems/Entities/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
