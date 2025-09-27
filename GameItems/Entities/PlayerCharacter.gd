@@ -45,6 +45,7 @@ signal playerHit
 @onready var fsm = $StateMachine as StateMachine
 @onready var playerMove = $StateMachine/playerMove as PlayerMove
 @onready var playerIdle = $StateMachine/playerIdle as PlayerIdle
+@onready var shoot_particles: GPUParticles2D = $ShootParticles
 
 
 
@@ -74,7 +75,7 @@ func _physics_process(delta):
 				isShot = true
 				var direction = global_position.direction_to(get_global_mouse_position())
 				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
-		
+				shoot_particles.emitting = true
 		
 		charge = 0
 		wasNotHolding = true
