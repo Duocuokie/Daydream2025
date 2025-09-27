@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oyim3khdv5vk"]
+
+[ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="1_kkyhp"]
+
+[node name="enemyHurt" type="Node"]
+script = ExtResource("1_kkyhp")
