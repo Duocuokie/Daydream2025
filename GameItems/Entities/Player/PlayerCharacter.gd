@@ -45,6 +45,8 @@ signal playerHit
 @onready var fsm = $StateMachine as StateMachine
 @onready var playerMove = $StateMachine/playerMove as PlayerMove
 @onready var playerIdle = $StateMachine/playerIdle as PlayerIdle
+@onready var shoot_particles: GPUParticles2D = $Particles/ShootParticles
+@onready var hurt_particles: GPUParticles2D = $Particles/HurtParticles
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -67,13 +69,16 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
 			%Sprite2D.frame = 3
 	if Input.is_action_just_released("shoot"):
-		if !isShot: # RECOLLECTED ALREADY, FAKE SHOOT
+		if !isShot: 
 			%Sprite2D.frame = 0
-			if wasNotHolding:
+			if wasNotHolding: # SHOOT
 				isShot = true
+				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
 				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
-		else: # SHOT
+			else: # FAKE SHOT
+				pass
+		else: # ON THE WAY
 			$Sprite2D.frame = 1
 		
 		charge = 0
@@ -101,6 +106,7 @@ func isShotSetter(value):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hurterPos = area.global_position
+	hurt_particles.emitting = true
 	%Flash.play("flash", 0, 1/area.invis)
 
 

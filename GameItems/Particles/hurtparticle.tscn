@@ -1,19 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfnbymqop1q7r"]
+[gd_scene load_steps=7 format=3 uid="uid://dmvnuqj8qoe72"]
+
+[ext_resource type="Texture2D" uid="uid://cul304cet7yru" path="res://Textures/charHurtParticles.png" id="1_g84hj"]
 
 [sub_resource type="Gradient" id="Gradient_yiukk"]
 colors = PackedColorArray(1, 0.95686275, 0, 1, 0.67180973, 0.50690144, 0.17546591, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xt6fx"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g84hj"]
 gradient = SubResource("Gradient_yiukk")
 
 [sub_resource type="Curve" id="Curve_p4xnq"]
-_data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.8439306, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_fy3gb"]
+[sub_resource type="CurveTexture" id="CurveTexture_lkmdx"]
 curve = SubResource("Curve_p4xnq")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ayh7"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i4g1t"]
 particle_flag_disable_z = true
 spread = 25.98
 initial_velocity_min = 50.0
@@ -21,18 +23,19 @@ initial_velocity_max = 100.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 10.0
 linear_accel_max = 35.0
-scale_min = 4.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_fy3gb")
-color_initial_ramp = SubResource("GradientTexture1D_xt6fx")
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_lkmdx")
+color_initial_ramp = SubResource("GradientTexture1D_g84hj")
 hue_variation_min = -1.0
 hue_variation_max = -1.0
 
 [node name="HurtParticle" type="GPUParticles2D"]
 emitting = false
 amount = 10
+texture = ExtResource("1_g84hj")
 lifetime = 0.75
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 draw_order = 0
-process_material = SubResource("ParticleProcessMaterial_2ayh7")
+process_material = SubResource("ParticleProcessMaterial_i4g1t")
