@@ -10,13 +10,6 @@
 script = ExtResource("1_54fnr")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("bodyProj") instance=ExtResource("1_t3336")]
-baseSpeed = null
-baseAcceleration = null
-baseFriction = null
-sacSpeed = null
-sacAcceleration = null
-sacFriction = null
-recoildAcceleration = null
 bodyProj = NodePath("../BodyProj")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]

@@ -163,7 +163,7 @@ one_shot = true
 
 [node name="Particles" type="Node2D" parent="."]
 
-[node name="HurtParticle" parent="Particles" instance=ExtResource("9_oivkm")]
+[node name="HurtParticles" parent="Particles" instance=ExtResource("9_oivkm")]
 
 [node name="ShootParticles" parent="Particles" instance=ExtResource("10_3pkpc")]
 

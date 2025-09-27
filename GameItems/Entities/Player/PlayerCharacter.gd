@@ -46,7 +46,7 @@ signal playerHit
 @onready var playerMove = $StateMachine/playerMove as PlayerMove
 @onready var playerIdle = $StateMachine/playerIdle as PlayerIdle
 @onready var shoot_particles: GPUParticles2D = $Particles/ShootParticles
-@onready var hurt_particle: GPUParticles2D = $Particles/HurtParticle
+@onready var hurt_particles: GPUParticles2D = $Particles/HurtParticles
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -106,6 +106,7 @@ func isShotSetter(value):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hurterPos = area.global_position
+	hurt_particles.emitting = true
 	%Flash.play("flash", 0, 1/area.invis)
 
 
