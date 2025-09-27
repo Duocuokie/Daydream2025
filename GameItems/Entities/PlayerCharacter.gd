@@ -14,6 +14,8 @@ class_name PlayerCharacter
 @export var sacAcceleration = 2000
 @export var sacFriction = 2000
 
+@export var recoildAcceleration = 1000
+
 var maxSpeed = baseSpeed
 var acceleration = baseAcceleration
 var friction = baseFriction
