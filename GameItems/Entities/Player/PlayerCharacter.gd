@@ -6,15 +6,15 @@ class_name PlayerCharacter
 @export var importantStats : Resource
 
 #movement variables
-@export var baseSpeed = 200
-@export var baseAcceleration = 1750
-@export var baseFriction = 2000
+@export var baseSpeed := 200
+@export var baseAcceleration := 1750
+@export var baseFriction := 2000
 
-@export var sacSpeed = 350
-@export var sacAcceleration = 2000
-@export var sacFriction = 2500
+@export var sacSpeed := 350
+@export var sacAcceleration := 2000
+@export var sacFriction := 2500
 
-@export var recoildAcceleration = 1000
+@export var recoildAcceleration := 1000
 
 var maxSpeed = baseSpeed
 var acceleration = baseAcceleration
@@ -91,11 +91,22 @@ func isShotSetter(value):
 	
 	if value:
 		%Sprite2D.frame = 1
+		%RecoilTimer.stop()
 		maxSpeed = sacSpeed
 		acceleration = sacAcceleration	
 		friction = sacFriction
 	else:
 		%Sprite2D.frame = 0
 		maxSpeed = baseSpeed
-		acceleration = baseAcceleration
+		acceleration = recoildAcceleration
 		friction = baseFriction
+		%RecoilTimer.start()
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	hurterPos = area.global_position
+	%Flash.play("flash", 0, 1/area.invis)
+
+
+func _on_recoil_timer_timeout() -> void:
+	acceleration = baseAcceleration

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6fwo15o0g6wh"]
 
-[ext_resource type="Script" uid="uid://c7xj3egpx4q5u" path="res://GameItems/Entities/bodyProj.gd" id="1_yemry"]
+[ext_resource type="Script" uid="uid://c7xj3egpx4q5u" path="res://GameItems/Entities/Player/bodyProj.gd" id="1_yemry"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jubb6"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="3_8ino8"]
 
@@ -8,10 +8,10 @@
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_flavl"]
-radius = 13.0
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yemry"]
-radius = 17.0
+radius = 9.0
 
 [node name="BodyProj" type="CharacterBody2D"]
 collision_layer = 8
@@ -32,7 +32,7 @@ collision_layer = 16
 collision_mask = 0
 monitorable = false
 damage = 50
-knockback = 500
+knockback = 600
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_flavl")

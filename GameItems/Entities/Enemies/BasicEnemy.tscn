@@ -17,7 +17,7 @@
 
 [sub_resource type="Resource" id="Resource_5nwg3"]
 script = ExtResource("3_2wxxd")
-maxSpeed = 200
+maxSpeed = 100
 acceleration = 2000
 friction = 2000
 maxHp = 100
@@ -32,9 +32,6 @@ radius = 13.038404
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rbwg"]
 radius = 16.03122
-
-[sub_resource type="Animation" id="Animation_2v2ig"]
-resource_name = "move"
 
 [sub_resource type="Animation" id="Animation_6rbwg"]
 resource_name = "die"
@@ -57,6 +54,9 @@ tracks/0/keys = {
 resource_name = "hit"
 length = 0.1
 
+[sub_resource type="Animation" id="Animation_2v2ig"]
+resource_name = "move"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wxxd"]
 _data = {
 &"die": SubResource("Animation_6rbwg"),
@@ -64,14 +64,15 @@ _data = {
 &"move": SubResource("Animation_2v2ig")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mtapn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wxxd"]
 resource_local_to_scene = true
 atlas = ExtResource("2_k376a")
-region = Rect2(0, 168, 16, 4)
+region = Rect2(2032, 12, 16, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ath44"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nwg3"]
 resource_local_to_scene = true
-region = Rect2(128, 1016, 16, 4)
+atlas = ExtResource("2_k376a")
+region = Rect2(2032, 8, 16, 4)
 
 [node name="BasicEnemy" instance=ExtResource("1_473sd")]
 script = ExtResource("2_2v2ig")
@@ -88,6 +89,7 @@ shape = SubResource("CircleShape2D_k376a")
 [node name="Hitbox" parent="." index="2" instance=ExtResource("2_6onyf")]
 collision_layer = 128
 collision_mask = 16
+damage = 10
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_2v2ig")
@@ -108,11 +110,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_2wxxd")
 }
 
-[node name="EntityHealthBar" parent="." index="6" instance=ExtResource("5_2v2ig")]
-texture_under = SubResource("AtlasTexture_mtapn")
-texture_progress = SubResource("AtlasTexture_ath44")
-
-[node name="StateMachine" parent="." index="7" node_paths=PackedStringArray("state") instance=ExtResource("6_6rbwg")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("state") instance=ExtResource("6_6rbwg")]
 state = NodePath("enemyMove")
 
 [node name="enemyDie" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("9_6rbwg")]
@@ -134,6 +132,12 @@ script = ExtResource("9_wvs5r")
 enemy = NodePath("../..")
 anim = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://bkg071dhc6y8c"
+
+[node name="EntityHealthBar" parent="." index="7" instance=ExtResource("5_2v2ig")]
+offset_top = -22.0
+offset_bottom = 18.0
+texture_under = SubResource("AtlasTexture_2wxxd")
+texture_progress = SubResource("AtlasTexture_5nwg3")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]

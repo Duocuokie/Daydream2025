@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnugfkrra0amc"]
+[gd_scene load_steps=9 format=3 uid="uid://dnugfkrra0amc"]
 
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="1_ejqcx"]
 [ext_resource type="Script" uid="uid://cr60re4xkvncb" path="res://GameItems/Components/entityHealthBar.gd" id="1_qb5mn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nywup"]
 resource_local_to_scene = true
-region = Rect2(128, 1020, 16, 4)
+atlas = ExtResource("1_ejqcx")
+region = Rect2(2032, 12, 16, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwd3m"]
 resource_local_to_scene = true
-region = Rect2(128, 1016, 16, 4)
+atlas = ExtResource("1_ejqcx")
+region = Rect2(2032, 8, 16, 4)
 
 [sub_resource type="Animation" id="Animation_0bq1t"]
 length = 0.001
@@ -105,7 +108,7 @@ offset_left = -8.0
 offset_top = -2.0
 offset_right = 32.0
 offset_bottom = 38.0
-value = 76.0
+value = 89.0
 texture_under = SubResource("AtlasTexture_nywup")
 texture_progress = SubResource("AtlasTexture_pwd3m")
 script = ExtResource("1_qb5mn")

@@ -4,9 +4,9 @@ extends TextureProgressBar
 @onready var timer = $Timer
 
 var barposses = [
-	168,
-	172,
-	176
+	0,
+	4,
+	8
 ]
 
 
@@ -16,7 +16,7 @@ func  _ready():
 
 
 func changecolour(vlue):
-	texture_progress.region = Rect2(Vector2(128,barposses[vlue]), Vector2(16, 4))
+	texture_progress.region = Rect2(Vector2(2032,barposses[vlue]), Vector2(16, 4))
 	
 
 

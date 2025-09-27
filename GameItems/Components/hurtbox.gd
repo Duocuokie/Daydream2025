@@ -41,7 +41,6 @@ func _on_hurtBox_invisEnd():
 
 
 func _on_area_entered(area):
-	var piercing := true
 	
 	#if area.get_parent() is Projectile:
 		#if area.get_parent().stats.pierce < 0:
@@ -49,6 +48,6 @@ func _on_area_entered(area):
 		#else:
 			#area.get_parent().stats.pierce -= 1
 			
-	if health.health > 0 && piercing:
+	if health.health > 0:
 		startInvis(area.invis)
 		health.health -= area.damage
