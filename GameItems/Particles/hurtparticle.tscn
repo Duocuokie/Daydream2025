@@ -25,7 +25,8 @@ scale_min = 4.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_fy3gb")
 color_initial_ramp = SubResource("GradientTexture1D_xt6fx")
-hue_variation_max = 1.0
+hue_variation_min = -1.0
+hue_variation_max = -1.0
 
 [node name="HurtParticle" type="GPUParticles2D"]
 emitting = false
