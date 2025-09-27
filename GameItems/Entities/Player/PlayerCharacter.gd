@@ -14,6 +14,8 @@ class_name PlayerCharacter
 @export var sacAcceleration := 2000
 @export var sacFriction := 2500
 
+@export var slowSpeed = 125
+
 @export var recoildAcceleration := 1000
 
 var maxSpeed = baseSpeed
@@ -25,6 +27,7 @@ var friction = baseFriction
 var hurterPos : Vector2
 var hurterDir : Vector2
 var wasNotHolding := true
+var hitCount := 0 : set = hitCountSetter
 
 
 @export var bodyProj: BodyProj 
@@ -48,6 +51,7 @@ signal playerHit
 @onready var playerIdle = $StateMachine/playerIdle as PlayerIdle
 @onready var shoot_particles: GPUParticles2D = $Particles/ShootParticles
 @onready var hurt_particles: GPUParticles2D = $Particles/HurtParticles
+@onready var nostate: Node = $StateMachine/nostate
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -59,7 +63,6 @@ func _ready():
 func _physics_process(delta):
 	#print(wasNotHolding)
 	if velocity.length_squared() > 150000:
-		print("fast")
 		%Hitbox.set_deferred("monitorable", true)
 		%Hurtbox.set_deferred("monitoring", false)
 	else:
@@ -67,16 +70,20 @@ func _physics_process(delta):
 		%Hurtbox.set_deferred("monitoring", true)
 	
 	importantStats.PlayerPos = global_position
-	rotation = global_position.angle_to_point(get_global_mouse_position())
+	var mouseRad = global_position.angle_to_point(get_global_mouse_position())
+	rotation = mouseRad
 	if Input.is_action_pressed("shoot"): 
-		if !isShot: # AIMING
-			if wasNotHolding:
-				%Sprite2D.frame = 2
-			charge += 100 * delta
-		elif bodyProj.hasHit: # RECOLLECTING
+		if bodyProj.hasHit: # RECOLLECTING
 			wasNotHolding = false
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 900, 5000*delta)
 			%Sprite2D.frame = 3
+		elif !isShot:
+			if wasNotHolding:
+				%Sprite2D.frame = 2
+				charge += 100 * delta
+				maxSpeed = slowSpeed
+			else:
+				maxSpeed = baseSpeed
 	if Input.is_action_just_released("shoot"):
 		if !isShot: 
 			%Sprite2D.frame = 0
@@ -85,6 +92,7 @@ func _physics_process(delta):
 				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
 				bodyProj.shoot(global_position, direction, clamp(charge * 6 + 450, 0, 1100))
+				velocity = velocity + -Vector2.from_angle(mouseRad).normalized() * 640
 			else: # FAKE SHOT
 				pass
 		else: # ON THE WAY
@@ -96,6 +104,12 @@ func _physics_process(delta):
 func _unhandled_input(_event: InputEvent) -> void:
 	#shooting
 	pass
+
+func hitCountSetter(value):
+	hitCount = value
+	if value > 3:
+		%Health.health += clamp(1 * hitCount, 0, 10)
+	
 func isShotSetter(value):
 	isShot = value
 	
@@ -106,6 +120,7 @@ func isShotSetter(value):
 		acceleration = sacAcceleration	
 		friction = sacFriction
 	else:
+		hitCount = 0
 		%Sprite2D.frame = 0
 		maxSpeed = baseSpeed
 		acceleration = recoildAcceleration
@@ -114,14 +129,19 @@ func isShotSetter(value):
 
 
 func _on_hurtbox_area_entered(area: Hitbox) -> void:
+	if %Health.health > 0 && isShot:
+		%Health.health -= area.damage
 	hurterPos = area.global_position
 	hurterDir = (area.global_position - global_position).normalized()
 	velocity = hurterDir * area.knockback * -1
-	var dir = get_angle_to(hurterPos)
-	print(dir)
 	hurt_particles.emitting = true
 	%Flash.play("flash", 0, 1/area.invis)
 
 
+
 func _on_recoil_timer_timeout() -> void:
 	acceleration = baseAcceleration
+
+
+func _on_health_die() -> void:
+	fsm.change_state(nostate)

@@ -24,7 +24,9 @@ func _physics_process(_delta):
 
 
 
-func _on_hurtbox_area_entered(area):
+func _on_hurtbox_area_entered(area : Area2D):
+	if area.get_parent() is PlayerCharacter:
+		area.get_parent().hitCount += 1
 	hurterDir = (area.global_position - global_position).normalized()
 	hurterPos = area.global_position
 	enemyHurt.kbres = stats.kbRes

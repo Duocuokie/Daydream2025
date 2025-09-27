@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=28 format=3 uid="uid://uvf3ppg3smev"]
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="5_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
-[ext_resource type="PackedScene" uid="uid://dmvnuqj8qoe72" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
-[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
+[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/shootparticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://GameItems/States/nostate.tscn" id="11_g17nx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g17nx"]
 shader = ExtResource("3_i5yfa")
@@ -142,6 +143,7 @@ collision_mask = 0
 monitorable = false
 damage = 50
 invis = 0.25
+knockback = 700
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_g17nx")
@@ -156,6 +158,7 @@ health = NodePath("../Health")
 shape = SubResource("CircleShape2D_i5yfa")
 
 [node name="Health" parent="." instance=ExtResource("3_mw144")]
+unique_name_in_owner = true
 maxHealth = 100
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("state") instance=ExtResource("4_1mxt5")]
@@ -168,6 +171,8 @@ animTree = NodePath("../../AnimationTree")
 [node name="playerMove" parent="StateMachine" node_paths=PackedStringArray("player", "animTree") instance=ExtResource("6_ah1mh")]
 player = NodePath("../..")
 animTree = NodePath("../../AnimationTree")
+
+[node name="nostate" parent="StateMachine" instance=ExtResource("11_g17nx")]
 
 [node name="RecoilTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -187,6 +192,7 @@ libraries = {
 }
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]
 
 [editable path="Hitbox"]
