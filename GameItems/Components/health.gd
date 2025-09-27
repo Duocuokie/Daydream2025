@@ -14,3 +14,4 @@ func setter(value):
 	emit_signal("healthChanged", health, maxHealth)
 	if health <= 0:
 		emit_signal("die")
+		

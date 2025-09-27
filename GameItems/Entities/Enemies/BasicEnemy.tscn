@@ -38,6 +38,20 @@ resource_name = "move"
 
 [sub_resource type="Animation" id="Animation_6rbwg"]
 resource_name = "die"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateMachine/enemyDie")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.46666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dieTime"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2wxxd"]
 resource_name = "hit"
@@ -86,6 +100,7 @@ health = NodePath("../Health")
 shape = SubResource("CircleShape2D_6rbwg")
 
 [node name="Health" parent="." index="4" instance=ExtResource("4_m5klc")]
+maxHealth = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
@@ -120,6 +135,7 @@ anim = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://bkg071dhc6y8c"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="healthChanged" from="Health" to="EntityHealthBar" method="_on_health_health_changed"]
 
 [editable path="Hitbox"]
