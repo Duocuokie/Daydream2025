@@ -13,6 +13,7 @@ script = ExtResource("1_54fnr")
 bodyProj = NodePath("../BodyProj")
 
 [node name="ShootParticles" parent="PlayerCharacter" instance=ExtResource("3_mpb17")]
+z_index = 50
 one_shot = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
