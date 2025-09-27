@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://camfpsvix4q2y"]
+[gd_scene load_steps=27 format=3 uid="uid://camfpsvix4q2y"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_473sd"]
 [ext_resource type="Script" uid="uid://7o6m6fa2rbvy" path="res://GameItems/Entities/Enemies/basicEnemy.gd" id="2_2v2ig"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="9_wvs5r"]
 [ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="10_m5klc"]
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/EnemyHurtParticle.tscn" id="15_5nwg3"]
+[ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/EnemyDieParticles.tscn" id="15_wvs5r"]
 
 [sub_resource type="Resource" id="Resource_5nwg3"]
 script = ExtResource("3_2wxxd")
@@ -142,7 +143,11 @@ texture_progress = SubResource("AtlasTexture_5nwg3")
 
 [node name="Particles" type="Node2D" parent="." index="8"]
 
-[node name="EnemyHurtParticle" parent="Particles" index="0" instance=ExtResource("15_5nwg3")]
+[node name="EnemyDieParticles" parent="Particles" index="0" instance=ExtResource("15_wvs5r")]
+emitting = false
+one_shot = true
+
+[node name="EnemyHurtParticle" parent="Particles" index="1" instance=ExtResource("15_5nwg3")]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]

@@ -12,6 +12,7 @@ class_name BasicEnemy extends Enemy
 @onready var enemyHurt = $StateMachine/enemyHurt
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var enemy_hurt_particle: GPUParticles2D = $Particles/EnemyHurtParticle
+@onready var enemy_die_particles: GPUParticles2D = $Particles/EnemyDieParticles
 
 
 func _ready():
@@ -48,6 +49,7 @@ func _on_hurtbox_area_entered(area):
 
 
 func _on_health_die():
+	enemy_die_particles.emitting = true
 	hitbox.set_deferred("monitorable", false) 
 	#hits(hurterPos)
 	stateMachine.change_state(enemyDie)
