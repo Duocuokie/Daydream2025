@@ -3,5 +3,5 @@
 [ext_resource type="Script" uid="uid://dksy00ry7p0w0" path="res://GameItems/Entities/Enemies/Enemy.gd" id="1_qwogl"]
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_qwogl")

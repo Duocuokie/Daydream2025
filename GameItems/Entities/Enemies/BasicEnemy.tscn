@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://camfpsvix4q2y"]
+[gd_scene load_steps=21 format=3 uid="uid://camfpsvix4q2y"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_473sd"]
 [ext_resource type="Script" uid="uid://wbjqgxcagmmk" path="res://GameItems/rescources/enemyStats.gd" id="2_2v2ig"]
@@ -24,6 +24,8 @@ metadata/_custom_type_script = "uid://wbjqgxcagmmk"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k376a"]
 radius = 13.038404
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v2ig"]
 
 [sub_resource type="Animation" id="Animation_2v2ig"]
 resource_name = "move"
@@ -57,6 +59,9 @@ region_rect = Rect2(0, 128, 32, 32)
 shape = SubResource("CircleShape2D_k376a")
 
 [node name="Hitbox" parent="." index="2" instance=ExtResource("2_6onyf")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_2v2ig")
 
 [node name="Hurtbox" parent="." index="3" node_paths=PackedStringArray("health") instance=ExtResource("3_k376a")]
 health = NodePath("../Health")
