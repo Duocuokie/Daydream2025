@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0oayulohau4e"]
+
+[ext_resource type="Script" uid="uid://b411ng3mka0nv" path="res://GameItems/World/world.gd" id="1_jvqa0"]
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_2cqbv"]
+[ext_resource type="PackedScene" uid="uid://cwoxar3sgss1r" path="res://GameItems/World/World.tscn" id="2_b32cg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1rcj"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(0, 1872, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk3xw"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(64, 1872, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvqa0"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(128, 1872, 64, 64)
+
+[node name="2D Game" type="Node2D" node_paths=PackedStringArray("world")]
+process_mode = 3
+script = ExtResource("1_jvqa0")
+world = NodePath("World")
+
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Retry" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="Retry"]
+offset_right = 650.0
+offset_bottom = 373.0
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="retryButton" type="TextureButton" parent="Retry"]
+offset_left = 304.0
+offset_top = 148.0
+offset_right = 368.0
+offset_bottom = 212.0
+texture_normal = SubResource("AtlasTexture_i1rcj")
+texture_pressed = SubResource("AtlasTexture_yk3xw")
+texture_hover = SubResource("AtlasTexture_jvqa0")
+
+[node name="World" parent="." instance=ExtResource("2_b32cg")]
+
+[connection signal="pressed" from="Retry/retryButton" to="." method="_on_retry_button_pressed"]

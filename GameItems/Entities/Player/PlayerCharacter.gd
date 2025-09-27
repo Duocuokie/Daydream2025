@@ -129,6 +129,7 @@ func isShotSetter(value):
 
 
 func _on_hurtbox_area_entered(area: Hitbox) -> void:
+	print(%Health)
 	if %Health.health > 0 && isShot:
 		%Health.health -= area.damage
 	hurterPos = area.global_position
@@ -144,5 +145,6 @@ func _on_recoil_timer_timeout() -> void:
 
 
 func _on_health_die() -> void:
+	print("die")
 	SignalBus.playerDie.emit()
 	fsm.change_state(nostate)

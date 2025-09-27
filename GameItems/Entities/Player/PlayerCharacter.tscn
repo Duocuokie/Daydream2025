@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="3_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="5_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
-[ext_resource type="PackedScene" uid="uid://dmvnuqj8qoe72" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
-[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
+[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/shootparticle.tscn" id="10_3pkpc"]
 [ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://GameItems/States/nostate.tscn" id="11_g17nx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g17nx"]
@@ -157,10 +157,6 @@ health = NodePath("../Health")
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource("CircleShape2D_i5yfa")
 
-[node name="Health" parent="." instance=ExtResource("3_mw144")]
-unique_name_in_owner = true
-maxHealth = 100
-
 [node name="StateMachine" parent="." node_paths=PackedStringArray("state") instance=ExtResource("4_1mxt5")]
 state = NodePath("playerIdle")
 
@@ -191,9 +187,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_u54rk")
 }
 
+[node name="Health" parent="." instance=ExtResource("3_mw144")]
+unique_name_in_owner = true
+maxHealth = 100
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="healthChanged" from="Health" to="." method="_on_health_health_changed"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]
