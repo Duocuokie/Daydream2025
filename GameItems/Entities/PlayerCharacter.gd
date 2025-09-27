@@ -60,17 +60,17 @@ func _physics_process(delta):
 	#print(wasNotHolding)
 	importantStats.PlayerPos = global_position
 	rotation = global_position.angle_to_point(get_global_mouse_position())
-	if Input.is_action_pressed("shoot"):
-		if !isShot:
+	if Input.is_action_pressed("shoot"): 
+		if !isShot: # AIMING
 			if wasNotHolding:
 				%Sprite2D.frame = 2
 			charge += 100 * delta
-		else:
+		else: # RECOLLECTING
 			wasNotHolding = false
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
 			%Sprite2D.frame = 3
 	if Input.is_action_just_released("shoot"):
-		if !isShot :
+		if !isShot: 
 			%Sprite2D.frame = 0
 			if wasNotHolding:
 				isShot = true
