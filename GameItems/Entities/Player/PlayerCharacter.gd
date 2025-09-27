@@ -60,10 +60,10 @@ func _physics_process(delta):
 	if velocity.length_squared() > 150000:
 		print("fast")
 		%Hitbox.set_deferred("monitorable", true)
-		%Hurtbox.set_deferred("monitorable", false)
+		%Hurtbox.set_deferred("monitoring", false)
 	else:
 		%Hitbox.set_deferred("monitorable", false)
-		%Hurtbox.set_deferred("monitorable", true)
+		%Hurtbox.set_deferred("monitoring", true)
 	
 	importantStats.PlayerPos = global_position
 	rotation = global_position.angle_to_point(get_global_mouse_position())
