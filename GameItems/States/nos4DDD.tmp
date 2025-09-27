@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctr08g4aivhp2"]
+
+[ext_resource type="Script" path="res://coolstuff/States/nostate.gd" id="1_hxffu"]
+
+[node name="nostate" type="Node"]
+script = ExtResource("1_hxffu")

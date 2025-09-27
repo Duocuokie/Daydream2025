@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbnob75h5r10i"]
+
+[ext_resource type="Script" uid="uid://dlhp012dvhcxv" path="res://GameItems/States/Player/playerMove.gd" id="1_wsqj3"]
+
+[node name="PlayerMove" type="Node"]
+script = ExtResource("1_wsqj3")
