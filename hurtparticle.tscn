@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7fv4wc7nyluo"]
+
+[sub_resource type="Curve" id="Curve_p4xnq"]
+_data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_yiukk"]
+colors = PackedColorArray(1, 0.95686275, 0, 1, 0.75724566, 0.45343512, 0.16111493, 1)
+
+[node name="hurtparticle" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 10
+lifetime = 0.75
+explosiveness = 1.0
+spread = 25.98
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+linear_accel_min = 10.0
+linear_accel_max = 35.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_p4xnq")
+color_initial_ramp = SubResource("Gradient_yiukk")
+hue_variation_max = 1.0
