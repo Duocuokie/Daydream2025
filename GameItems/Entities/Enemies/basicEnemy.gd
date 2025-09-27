@@ -1,8 +1,5 @@
 class_name BasicEnemy extends Enemy
 
-
-
-
 @onready var hitbox = $Hitbox
 @onready var health = $Health as healthComp
 @onready var stateMachine := $StateMachine
@@ -11,9 +8,9 @@ class_name BasicEnemy extends Enemy
 @onready var enemyDie = $StateMachine/enemyDie as EnemyDie
 @onready var enemyHurt = $StateMachine/enemyHurt
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var enemy_hurt_particle: GPUParticles2D = $Particles/EnemyHurtParticle
-@onready var enemy_die_particles: GPUParticles2D = $Particles/EnemyDieParticles
 
+@export var enemy_die_particles : GPUParticles2D
+@export var enemy_hurt_particles : GPUParticles2D
 
 func _ready():
 	enemyHurt.uptime.connect(stateMachine.change_state.bind(enemyMove))
@@ -33,7 +30,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 	enemyHurt.wkb = area.knockback
 	if stateMachine.state != enemyDie:
 		stateMachine.change_state(enemyHurt)
-		enemy_hurt_particle.emitting = true
+		enemy_hurt_particles.emitting = true
 	
 
 	

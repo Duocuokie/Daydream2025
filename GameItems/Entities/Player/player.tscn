@@ -13,6 +13,12 @@ script = ExtResource("1_54fnr")
 unique_name_in_owner = true
 bodyProj = NodePath("../BodyProj")
 
+[node name="Hitbox" parent="PlayerCharacter" index="4"]
+knockback = 20
+
+[node name="Health" parent="PlayerCharacter" index="6"]
+unique_name_in_owner = false
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
 remote_path = NodePath("../../Camera")
 update_rotation = false

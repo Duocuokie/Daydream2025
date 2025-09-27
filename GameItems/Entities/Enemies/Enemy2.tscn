@@ -11,11 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="9_8nkpk"]
 [ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="10_e0mmv"]
 [ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="11_xwa25"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="12_eqiyo"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="12_eqiyo"]
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="13_dbiff"]
 [ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="14_ycmhm"]
-[ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/EnemyDieParticles.tscn" id="15_psq1g"]
-[ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/EnemyHurtParticle.tscn" id="16_wndwx"]
+[ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="15_psq1g"]
+[ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="16_wndwx"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="17_n6y08"]
 
 [sub_resource type="Resource" id="Resource_8xh77"]
@@ -150,11 +150,9 @@ texture_progress = SubResource("AtlasTexture_5nwg3")
 
 [node name="Particles" type="Node2D" parent="." index="8"]
 
-[node name="EnemyDieParticles" parent="Particles" index="0" instance=ExtResource("15_psq1g")]
-emitting = false
-one_shot = true
+[node name="Enemy2DieParticles" parent="Particles" index="0" instance=ExtResource("15_psq1g")]
 
-[node name="EnemyHurtParticle" parent="Particles" index="1" instance=ExtResource("16_wndwx")]
+[node name="Enemy2HurtParticle" parent="Particles" index="1" instance=ExtResource("16_wndwx")]
 
 [node name="SoftCollision" parent="." index="9" node_paths=PackedStringArray("actor") instance=ExtResource("17_n6y08")]
 actor = NodePath("..")
