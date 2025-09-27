@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
 [ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="4_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
 [ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
-[ext_resource type="PackedScene" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
-[ext_resource type="PackedScene" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" uid="uid://dfnbymqop1q7r" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
+[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jrtm"]
 radius = 24.0
@@ -47,9 +47,9 @@ importantStats = ExtResource("2_3pkpc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture = ExtResource("2_mw144")
-hframes = 3
+hframes = 4
 region_enabled = true
-region_rect = Rect2(0, 0, 144, 48)
+region_rect = Rect2(0, 0, 192, 48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1jrtm")
