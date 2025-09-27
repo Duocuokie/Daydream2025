@@ -2,7 +2,7 @@ class_name BodyProj extends CharacterBody2D
 
 signal bodyCollected
 
-var friction := 1750
+var friction := 1500
 var collected := true
 @onready var timer: Timer = $Timer
 @onready var collectArea: Area2D = $CollectArea
