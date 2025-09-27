@@ -1,19 +1,26 @@
-[gd_scene load_steps=20 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=26 format=3 uid="uid://uvf3ppg3smev"]
 
-[ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/PlayerCharacter.gd" id="1_88lmo"]
+[ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
+[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="3_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
 [ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="4_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
 [ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
-[ext_resource type="PackedScene" uid="uid://dfnbymqop1q7r" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
-[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" uid="uid://dmvnuqj8qoe72" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
+[ext_resource type="PackedScene" uid="uid://cch114jg65kwd" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g17nx"]
+shader = ExtResource("3_i5yfa")
+shader_parameter/active = false
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/trans = 0.8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jrtm"]
-radius = 24.0
+radius = 14.142136
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2hpnf"]
 
@@ -38,6 +45,68 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_mw144")
 states/Run/position = Vector2(583, 94)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1mxt5"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7skad"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ah1mh"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_cs6y2")]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5yfa"]
+
+[sub_resource type="Animation" id="Animation_rb538"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/trans")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.8, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ugrsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/trans")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u54rk"]
+_data = {
+&"RESET": SubResource("Animation_ugrsy"),
+&"flash": SubResource("Animation_rb538")
+}
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
@@ -46,10 +115,11 @@ importantStats = ExtResource("2_3pkpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_g17nx")
 texture = ExtResource("2_mw144")
 hframes = 4
 region_enabled = true
-region_rect = Rect2(0, 0, 192, 48)
+region_rect = Rect2(0, 0, 128, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1jrtm")
@@ -62,10 +132,16 @@ parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Hurtbox" parent="." instance=ExtResource("2_2hpnf")]
-script = null
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("2_2hpnf")]
+collision_layer = 32
+collision_mask = 128
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_i5yfa")
 
 [node name="Health" parent="." instance=ExtResource("3_mw144")]
+maxHealth = 100
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("state") instance=ExtResource("4_1mxt5")]
 state = NodePath("playerIdle")
@@ -82,6 +158,7 @@ animTree = NodePath("../../AnimationTree")
 
 [node name="RecoilTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 0.2
 one_shot = true
 
 [node name="Particles" type="Node2D" parent="."]
@@ -89,3 +166,14 @@ one_shot = true
 [node name="HurtParticle" parent="Particles" instance=ExtResource("9_oivkm")]
 
 [node name="ShootParticles" parent="Particles" instance=ExtResource("10_3pkpc")]
+
+[node name="Flash" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_u54rk")
+}
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]
+
+[editable path="Hurtbox"]

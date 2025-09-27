@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsa3jut4qa2rj"]
+
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="1_lucij"]
+[ext_resource type="Script" uid="uid://ca85nv6thss65" path="res://GameItems/Entities/Player/PlayerHealthBar.gd" id="2_1msxj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0rjy"]
+atlas = ExtResource("1_lucij")
+region = Rect2(1904, 96, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joa56"]
+atlas = ExtResource("1_lucij")
+region = Rect2(1904, 64, 128, 32)
+
+[node name="PlayerHealthBar" type="TextureProgressBar"]
+z_index = 50
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 48.0
+value = 100.0
+texture_under = SubResource("AtlasTexture_p0rjy")
+texture_progress = SubResource("AtlasTexture_joa56")
+script = ExtResource("2_1msxj")
