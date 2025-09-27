@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://x080sdocgejc"]
+[gd_scene load_steps=7 format=3 uid="uid://x080sdocgejc"]
+
+[ext_resource type="Texture2D" uid="uid://df5ljtg607oxy" path="res://Textures/launchParticles.png" id="1_80btf"]
 
 [sub_resource type="Gradient" id="Gradient_7rj46"]
 colors = PackedColorArray(1, 1, 0.23137255, 1, 1, 0.5921569, 0, 1)
@@ -21,8 +23,6 @@ initial_velocity_max = 150.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 10.0
 linear_accel_max = 35.0
-scale_min = 16.0
-scale_max = 16.0
 scale_curve = SubResource("CurveTexture_80btf")
 color_initial_ramp = SubResource("GradientTexture1D_d1rbh")
 hue_variation_min = -2.2351742e-08
@@ -32,6 +32,7 @@ hue_variation_max = -2.2351742e-08
 emitting = false
 amount = 10
 amount_ratio = 0.75
+texture = ExtResource("1_80btf")
 lifetime = 0.75
 explosiveness = 1.0
 fixed_fps = 0
