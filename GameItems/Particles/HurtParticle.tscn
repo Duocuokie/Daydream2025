@@ -32,6 +32,7 @@ hue_variation_max = -1.0
 emitting = false
 amount = 10
 lifetime = 0.75
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 draw_order = 0

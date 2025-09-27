@@ -45,6 +45,8 @@ signal playerHit
 @onready var fsm = $StateMachine as StateMachine
 @onready var playerMove = $StateMachine/playerMove as PlayerMove
 @onready var playerIdle = $StateMachine/playerIdle as PlayerIdle
+@onready var shoot_particles: GPUParticles2D = $Particles/ShootParticles
+@onready var hurt_particle: GPUParticles2D = $Particles/HurtParticle
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -75,6 +77,7 @@ func _physics_process(delta):
 				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
 		else: # SHOT
 			$Sprite2D.frame = 1
+			shoot_particles.emitting = true
 		
 		charge = 0
 		wasNotHolding = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_3pkpc"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="3_i5yfa"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
 [ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
 [ext_resource type="PackedScene" uid="uid://dmvnuqj8qoe72" path="res://GameItems/Particles/HurtParticle.tscn" id="9_oivkm"]
-[ext_resource type="PackedScene" uid="uid://cch114jg65kwd" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
+[ext_resource type="PackedScene" uid="uid://x080sdocgejc" path="res://GameItems/Particles/ShootParticle.tscn" id="10_3pkpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g17nx"]
 shader = ExtResource("3_i5yfa")
@@ -47,33 +47,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5yfa"]
 
-[sub_resource type="Animation" id="Animation_rb538"]
-resource_name = "flash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader_parameter/trans")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.8, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_ugrsy"]
 length = 0.001
 tracks/0/type = "value"
@@ -99,6 +72,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.8]
+}
+
+[sub_resource type="Animation" id="Animation_rb538"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/trans")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.8, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u54rk"]

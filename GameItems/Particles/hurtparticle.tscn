@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfnbymqop1q7r"]
+[gd_scene load_steps=6 format=3 uid="uid://dmvnuqj8qoe72"]
 
 [sub_resource type="Gradient" id="Gradient_yiukk"]
 colors = PackedColorArray(1, 0.95686275, 0, 1, 0.67180973, 0.50690144, 0.17546591, 1)
@@ -32,6 +32,7 @@ hue_variation_max = -1.0
 emitting = false
 amount = 10
 lifetime = 0.75
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 draw_order = 0
