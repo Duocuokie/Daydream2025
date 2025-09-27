@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qolkpf7d4ihb"]
+
+[ext_resource type="Script" uid="uid://smxyxf4mssa2" path="res://GameItems/States/Enemy/enemyIdle.gd" id="1_b7slt"]
+
+[node name="enemyIdle" type="Node"]
+script = ExtResource("1_b7slt")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://v0sl1lra1beu"]
+
+[ext_resource type="Script" uid="uid://ps6lo1djrupq" path="res://GameItems/States/Enemy/enemyDie.gd" id="1_0dxcr"]
+
+[node name="enemyDie" type="Node"]
+script = ExtResource("1_0dxcr")

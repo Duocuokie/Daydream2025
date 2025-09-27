@@ -2,7 +2,7 @@ extends State
 class_name PlayerIdle
 
 
-@export var player : Player
+@export var player : PlayerCharacter
 @export var animTree : AnimationTree
 
 signal runningtime
@@ -11,7 +11,6 @@ func _ready():
 	set_physics_process(false)
 	
 func _enter_state() -> void:
-	print("idle")
 	set_physics_process(true)
 	player.global_position = player.global_position.snapped(Vector2(1, 1))
 

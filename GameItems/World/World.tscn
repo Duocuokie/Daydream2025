@@ -1,7 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwoxar3sgss1r"]
 
-[ext_resource type="PackedScene" uid="uid://uvf3ppg3smev" path="res://GameItems/Entities/player.tscn" id="1_l31r7"]
+[ext_resource type="PackedScene" uid="uid://dein1pvvbcdxk" path="res://GameItems/Entities/Player.tscn" id="1_l31r7"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_l31r7")]
+
+[editable path="Player"]

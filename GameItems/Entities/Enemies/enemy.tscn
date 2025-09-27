@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3s30we6nf7hh"]
+
+[ext_resource type="Script" uid="uid://dksy00ry7p0w0" path="res://GameItems/Entities/Enemies/Enemy.gd" id="1_qwogl"]
+[ext_resource type="Script" uid="uid://bxgvj71buhv5m" path="res://GameItems/Components/Hitbox.gd" id="2_mmob5"]
+[ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="3_x14uy"]
+[ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="4_pc6do"]
+[ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="5_igsfe"]
+[ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="6_vjfii"]
+[ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="7_6vk2v"]
+[ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="8_qtsx0"]
+[ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="9_54xyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdh5p"]
+resource_local_to_scene = true
+region = Rect2(128, 1020, 16, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yonfn"]
+resource_local_to_scene = true
+region = Rect2(128, 1016, 16, 4)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_qwogl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_mmob5")
+metadata/_custom_type_script = "uid://bxgvj71buhv5m"
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_x14uy")]
+health = NodePath("../Health")
+
+[node name="EntityHealthBar" parent="." instance=ExtResource("4_pc6do")]
+texture_under = SubResource("AtlasTexture_qdh5p")
+texture_progress = SubResource("AtlasTexture_yonfn")
+
+[node name="Health" parent="." instance=ExtResource("5_igsfe")]
+
+[node name="StateMachine" parent="." instance=ExtResource("6_vjfii")]
+
+[node name="enemyIdle" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("7_6vk2v")]
+enemy = NodePath("../..")
+
+[node name="EnemyMove" parent="StateMachine" instance=ExtResource("8_qtsx0")]
+
+[node name="enemyDie" parent="StateMachine" instance=ExtResource("9_54xyd")]
+
+[connection signal="healthChanged" from="Health" to="EntityHealthBar" method="_on_health_health_changed"]
