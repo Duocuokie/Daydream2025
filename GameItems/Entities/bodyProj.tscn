@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6fwo15o0g6wh"]
+
+[ext_resource type="Script" uid="uid://c7xj3egpx4q5u" path="res://GameItems/Entities/bodyProj.gd" id="1_yemry"]
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jubb6"]
+[ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="3_8ino8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flavl"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yemry"]
+radius = 17.0
+
+[node name="BodyProj" type="CharacterBody2D"]
+script = ExtResource("1_yemry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jubb6")
+region_enabled = true
+region_rect = Rect2(0, 48, 32, 32)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_8ino8")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_flavl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_yemry")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Hitbox"]

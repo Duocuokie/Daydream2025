@@ -2,7 +2,7 @@ extends State
 class_name PlayerMove
 
 
-@export var player : Player
+@export var player : PlayerCharacter
 @export var animTree : AnimationTree
 
 signal idletime
@@ -11,7 +11,6 @@ func _ready():
 	set_physics_process(false)
 	
 func _enter_state() -> void:
-	print("move")
 	set_physics_process(true)
 
 func _exit_state() -> void:

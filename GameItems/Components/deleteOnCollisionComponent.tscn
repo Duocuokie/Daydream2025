@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8gos3khdnl3m"]
+
+[ext_resource type="Script" uid="uid://hpq4kxj8mumo" path="res://GameItems/Components/deleteOnCollisionComponent.gd" id="1_uewwh"]
+
+[node name="deleteOnCollisionComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_uewwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

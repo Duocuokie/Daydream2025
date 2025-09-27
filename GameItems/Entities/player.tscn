@@ -1,69 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=5 format=3 uid="uid://dein1pvvbcdxk"]
 
-[ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player.gd" id="1_88lmo"]
-[ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
-[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_mw144"]
-[ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="3_mw144"]
-[ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="4_1mxt5"]
-[ext_resource type="PackedScene" uid="uid://b545oyrybujlj" path="res://GameItems/States/Player/playerIdle.tscn" id="5_7skad"]
-[ext_resource type="PackedScene" uid="uid://bbnob75h5r10i" path="res://GameItems/States/Player/playerMove.tscn" id="6_ah1mh"]
-[ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="8_1mxt5"]
+[ext_resource type="Script" uid="uid://byfr2i7fno0v1" path="res://GameItems/Entities/Player.gd" id="1_54fnr"]
+[ext_resource type="PackedScene" uid="uid://uvf3ppg3smev" path="res://GameItems/Entities/PlayerCharacter.tscn" id="1_t3336"]
+[ext_resource type="PackedScene" uid="uid://c6fwo15o0g6wh" path="res://GameItems/Entities/bodyProj.tscn" id="2_54fnr"]
+[ext_resource type="PackedScene" uid="uid://bem02o7ehhy4a" path="res://GameItems/World/levelCamera.tscn" id="4_k4mav"]
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2hpnf"]
+[node name="Player" type="Node2D"]
+script = ExtResource("1_54fnr")
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_mw144"]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("bodyProj") instance=ExtResource("1_t3336")]
+bodyProj = NodePath("../BodyProj")
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mxt5"]
-advance_mode = 2
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
+remote_path = NodePath("../../levelCamera")
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7skad"]
-advance_mode = 2
+[node name="BodyProj" parent="." instance=ExtResource("2_54fnr")]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ah1mh"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cs6y2"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8hqiq"]
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_2hpnf")
-states/Idle/position = Vector2(342, 82)
-states/Run/node = SubResource("AnimationNodeBlendSpace2D_mw144")
-states/Run/position = Vector2(583, 94)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1mxt5"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7skad"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ah1mh"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_cs6y2")]
-
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_88lmo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_mw144")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_8hqiq")
-anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Run/blend_position = Vector2(0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="Hurtbox" parent="." instance=ExtResource("2_2hpnf")]
-script = null
-
-[node name="Health" parent="." instance=ExtResource("3_mw144")]
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("state") instance=ExtResource("4_1mxt5")]
-state = NodePath("playerIdle")
-
-[node name="playerIdle" parent="StateMachine" node_paths=PackedStringArray("player", "animTree") instance=ExtResource("5_7skad")]
-player = NodePath("../..")
-animTree = NodePath("../../AnimationTree")
-
-[node name="playerMove" parent="StateMachine" node_paths=PackedStringArray("player", "animTree") instance=ExtResource("6_ah1mh")]
-player = NodePath("../..")
-animTree = NodePath("../../AnimationTree")
-
-[node name="spawnerComponent" parent="." instance=ExtResource("8_1mxt5")]
+[node name="levelCamera" parent="." instance=ExtResource("4_k4mav")]

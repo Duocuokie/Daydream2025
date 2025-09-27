@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bem02o7ehhy4a"]
+
+[ext_resource type="Script" uid="uid://br4ita1q45064" path="res://GameItems/World/levelCamera.gd" id="1_a65bx"]
+
+[node name="levelCamera" type="Camera2D"]
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("1_a65bx")
