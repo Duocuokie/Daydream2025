@@ -4,9 +4,9 @@ extends TextureProgressBar
 @onready var timer = $Timer
 
 var barposses = [
-	1016,
-	1012,
-	1008
+	168,
+	172,
+	176
 ]
 
 
