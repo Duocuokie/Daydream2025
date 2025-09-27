@@ -27,8 +27,10 @@ scale_curve = SubResource("CurveTexture_3xluf")
 color_initial_ramp = SubResource("GradientTexture1D_jip0v")
 
 [node name="EnemyHurtParticle" type="GPUParticles2D"]
+emitting = false
 amount = 10
 texture = ExtResource("1_jip0v")
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 draw_order = 0

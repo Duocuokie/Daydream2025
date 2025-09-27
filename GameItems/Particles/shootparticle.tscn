@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://x080sdocgejc"]
 
-[ext_resource type="Texture2D" uid="uid://df5ljtg607oxy" path="res://Textures/launchParticles.png" id="1_80btf"]
+[ext_resource type="Texture2D" uid="uid://df5ljtg607oxy" path="res://Textures/launchParticles.png" id="1_7kbm1"]
 
 [sub_resource type="Gradient" id="Gradient_7rj46"]
 colors = PackedColorArray(1, 1, 0.23137255, 1, 1, 0.5921569, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_d1rbh"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nmgeo"]
 gradient = SubResource("Gradient_7rj46")
 
 [sub_resource type="Curve" id="Curve_7rj46"]
 _data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5393259), 0.0, 0.0, 0, 0, Vector2(0.93604654, 0.04494381), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_80btf"]
+[sub_resource type="CurveTexture" id="CurveTexture_njnik"]
 curve = SubResource("Curve_7rj46")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1x31m"]
@@ -23,8 +23,8 @@ initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = 10.0
 linear_accel_max = 35.0
-scale_curve = SubResource("CurveTexture_80btf")
-color_initial_ramp = SubResource("GradientTexture1D_d1rbh")
+scale_curve = SubResource("CurveTexture_njnik")
+color_initial_ramp = SubResource("GradientTexture1D_nmgeo")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
@@ -32,8 +32,9 @@ hue_variation_max = -2.2351742e-08
 emitting = false
 amount = 10
 amount_ratio = 0.75
-texture = ExtResource("1_80btf")
+texture = ExtResource("1_7kbm1")
 lifetime = 0.75
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 0
 draw_order = 0

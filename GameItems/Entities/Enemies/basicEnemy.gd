@@ -11,7 +11,7 @@ class_name BasicEnemy extends Enemy
 @onready var enemyDie = $StateMachine/enemyDie as EnemyDie
 @onready var enemyHurt = $StateMachine/enemyHurt
 @onready var sprite: Sprite2D = $Sprite2D
-
+@onready var enemy_hurt_particle: GPUParticles2D = $Particles/EnemyHurtParticle
 
 
 func _ready():
@@ -30,6 +30,7 @@ func _on_hurtbox_area_entered(area):
 	enemyHurt.wkb = area.knockback
 	if stateMachine.state != enemyDie:
 		stateMachine.change_state(enemyHurt)
+		enemy_hurt_particle.emitting = true
 	
 
 	
