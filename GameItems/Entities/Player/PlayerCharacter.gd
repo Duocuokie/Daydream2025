@@ -108,7 +108,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hurterPos = area.global_position
 	var dir = get_angle_to(hurterPos)
 	print(dir)
-	hurt_particles.transform.rotated(dir)
 	hurt_particles.emitting = true
 	%Flash.play("flash", 0, 1/area.invis)
 
