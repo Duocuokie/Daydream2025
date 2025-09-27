@@ -5,7 +5,7 @@ _data = [Vector2(0.017441869, 0.92134833), 0.0, 0.0, 0, 0, Vector2(0.505814, 0.5
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_yiukk"]
-colors = PackedColorArray(1, 0.95686275, 0, 1, 0.75724566, 0.45343512, 0.16111493, 1)
+colors = PackedColorArray(1, 0.95686275, 0, 1, 0.67180973, 0.50690144, 0.17546591, 1)
 
 [node name="hurtparticle" type="Node2D"]
 
