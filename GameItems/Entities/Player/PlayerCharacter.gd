@@ -23,6 +23,7 @@ var friction = baseFriction
 #getting hurt variables
 
 var hurterPos : Vector2
+var hurterDir : Vector2
 var wasNotHolding := true
 
 
@@ -72,9 +73,9 @@ func _physics_process(delta):
 			if wasNotHolding:
 				%Sprite2D.frame = 2
 			charge += 100 * delta
-		else: # RECOLLECTING
+		elif bodyProj.hasHit: # RECOLLECTING
 			wasNotHolding = false
-			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 1000, 5000*delta)
+			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 900, 5000*delta)
 			%Sprite2D.frame = 3
 	if Input.is_action_just_released("shoot"):
 		if !isShot: 
@@ -83,7 +84,7 @@ func _physics_process(delta):
 				isShot = true
 				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
-				bodyProj.shoot(global_position, direction, clamp(charge * 7 + 500, 0, 1200))
+				bodyProj.shoot(global_position, direction, clamp(charge * 6 + 450, 0, 1100))
 			else: # FAKE SHOT
 				pass
 		else: # ON THE WAY
@@ -112,8 +113,10 @@ func isShotSetter(value):
 		%RecoilTimer.start()
 
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurtbox_area_entered(area: Hitbox) -> void:
 	hurterPos = area.global_position
+	hurterDir = (area.global_position - global_position).normalized()
+	velocity = hurterDir * area.knockback * -1
 	var dir = get_angle_to(hurterPos)
 	print(dir)
 	hurt_particles.emitting = true

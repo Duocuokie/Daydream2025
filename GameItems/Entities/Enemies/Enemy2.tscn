@@ -1,0 +1,171 @@
+[gd_scene load_steps=29 format=3 uid="uid://32p2h6wbson6"]
+
+[ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_8xh77"]
+[ext_resource type="Script" uid="uid://7o6m6fa2rbvy" path="res://GameItems/Entities/Enemies/basicEnemy.gd" id="2_8467q"]
+[ext_resource type="Script" uid="uid://wbjqgxcagmmk" path="res://GameItems/rescources/enemyStats.gd" id="3_p46ry"]
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="4_4uu5d"]
+[ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="5_7gec2"]
+[ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="6_ry2rw"]
+[ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="7_v2un5"]
+[ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://GameItems/States/stateMachine.tscn" id="8_nb31m"]
+[ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="9_8nkpk"]
+[ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="10_e0mmv"]
+[ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="11_xwa25"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="12_eqiyo"]
+[ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="13_dbiff"]
+[ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="14_ycmhm"]
+[ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/EnemyDieParticles.tscn" id="15_psq1g"]
+[ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/EnemyHurtParticle.tscn" id="16_wndwx"]
+[ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="17_n6y08"]
+
+[sub_resource type="Resource" id="Resource_8xh77"]
+script = ExtResource("3_p46ry")
+maxSpeed = 150
+acceleration = 2000
+friction = 2000
+maxHp = 150
+baseDamage = 15
+kbRes = 0.9
+metadata/_custom_type_script = "uid://wbjqgxcagmmk"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8467q"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p46ry"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uu5d"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_6rbwg"]
+resource_name = "die"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateMachine/enemyDie")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.46666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dieTime"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2wxxd"]
+resource_name = "hit"
+length = 0.1
+
+[sub_resource type="Animation" id="Animation_2v2ig"]
+resource_name = "move"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wxxd"]
+_data = {
+&"die": SubResource("Animation_6rbwg"),
+&"hit": SubResource("Animation_2wxxd"),
+&"move": SubResource("Animation_2v2ig")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wxxd"]
+resource_local_to_scene = true
+atlas = ExtResource("4_4uu5d")
+region = Rect2(2032, 12, 16, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nwg3"]
+resource_local_to_scene = true
+atlas = ExtResource("4_4uu5d")
+region = Rect2(2032, 8, 16, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gec2"]
+radius = 8.062258
+
+[node name="Enemy2" instance=ExtResource("1_8xh77")]
+script = ExtResource("2_8467q")
+stats = SubResource("Resource_8xh77")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("4_4uu5d")
+region_enabled = true
+region_rect = Rect2(0, 160, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_8467q")
+
+[node name="Hitbox" parent="." index="2" instance=ExtResource("5_7gec2")]
+collision_layer = 128
+collision_mask = 16
+damage = 10
+invis = 1.0
+knockback = 750
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_p46ry")
+
+[node name="Hurtbox" parent="." index="3" node_paths=PackedStringArray("health") instance=ExtResource("6_ry2rw")]
+collision_layer = 64
+collision_mask = 16
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_4uu5d")
+
+[node name="Health" parent="." index="4" instance=ExtResource("7_v2un5")]
+maxHealth = 150
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_2wxxd")
+}
+
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("state") instance=ExtResource("8_nb31m")]
+state = NodePath("enemyMove")
+
+[node name="enemyDie" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("9_8nkpk")]
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="enemyIdle" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("10_e0mmv")]
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="enemyMove" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy", "anim", "spr") instance=ExtResource("11_xwa25")]
+importantStats = ExtResource("12_eqiyo")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+spr = NodePath("../../Sprite2D")
+
+[node name="enemyHurt" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("enemy", "anim")]
+script = ExtResource("13_dbiff")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://bkg071dhc6y8c"
+
+[node name="EntityHealthBar" parent="." index="7" instance=ExtResource("14_ycmhm")]
+offset_top = -22.0
+offset_bottom = 18.0
+texture_under = SubResource("AtlasTexture_2wxxd")
+texture_progress = SubResource("AtlasTexture_5nwg3")
+
+[node name="Particles" type="Node2D" parent="." index="8"]
+
+[node name="EnemyDieParticles" parent="Particles" index="0" instance=ExtResource("15_psq1g")]
+emitting = false
+one_shot = true
+
+[node name="EnemyHurtParticle" parent="Particles" index="1" instance=ExtResource("16_wndwx")]
+
+[node name="SoftCollision" parent="." index="9" node_paths=PackedStringArray("actor") instance=ExtResource("17_n6y08")]
+actor = NodePath("..")
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CircleShape2D_7gec2")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="healthChanged" from="Health" to="EntityHealthBar" method="_on_health_health_changed"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

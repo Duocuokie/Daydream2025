@@ -2,7 +2,8 @@ class_name BodyProj extends CharacterBody2D
 
 signal bodyCollected
 
-var friction := 1500
+var hasHit := false
+var friction := 1600
 var collected := true
 @onready var timer: Timer = $Timer
 @onready var collectArea: Area2D = $CollectArea
@@ -18,6 +19,7 @@ func shoot(pos, direction, speed) -> void:
 	collectArea.monitoring = false
 	visible = true
 	%Hitbox.set_deferred("monitorable", true)
+	%Hitbox.set_deferred("monitoring", true)
 	global_position = pos
 	velocity = direction * speed
 	
@@ -33,9 +35,15 @@ func _on_collect_area_body_entered(_body: Node2D) -> void:
 	set_physics_process(false)
 	visible = false
 	bodyCollected.emit()
+	hasHit = false
 	%Hitbox.set_deferred("monitorable", false)
+	%Hitbox.set_deferred("monitoring", false)
 
 
 
 func _on_timer_timeout() -> void:
 	collectArea.monitoring = true
+
+
+func _on_hitbox_area_entered(_area: Area2D) -> void:
+	hasHit = true

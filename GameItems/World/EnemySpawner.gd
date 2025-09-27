@@ -2,8 +2,8 @@ class_name EnemySpawner extends Node2D
 
 @export var graphs : Array[Curve]
 
-@onready var spawners : Array[Node2D] = [%Enemy1] 
-@onready var pools : Array[Node2D] = [%Enemies1]
+@onready var spawners : Array[Node2D] = [%Enemy1, %Enemy2] 
+@onready var pools : Array[Node2D] = [%Enemies1, %Enemies2]
 
 var time := 0
 

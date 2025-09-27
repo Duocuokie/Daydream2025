@@ -26,6 +26,10 @@ func _exit_state() -> void:
 
 func _physics_process(delta):
 	var target = importantStats.PlayerPos
+	if target.x > enemy.global_position.x + 640: enemy.global_position.x += 1279
+	elif target.x < enemy.global_position.x - 640: enemy.global_position.x -= 1279
+	if target.y > enemy.global_position.y + 640: enemy.global_position.y += 1279
+	elif target.y < enemy.global_position.y - 640: enemy.global_position.y -= 1279
 	if target != null:
 		var directionToTarget = (target - enemy.global_position).normalized()
 		enemy.velocity = enemy.velocity.move_toward(directionToTarget * enemy.stats.maxSpeed , enemy.stats.acceleration*delta)

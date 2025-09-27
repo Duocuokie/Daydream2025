@@ -10,26 +10,27 @@
 script = ExtResource("1_54fnr")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("bodyProj") instance=ExtResource("1_t3336")]
-baseSpeed = 200
-baseAcceleration = 1750
-baseFriction = 2000
-sacSpeed = 350
-sacAcceleration = 2000
-sacFriction = 2500
-recoildAcceleration = 1000
+unique_name_in_owner = true
 bodyProj = NodePath("../BodyProj")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
-remote_path = NodePath("../../levelCamera")
+remote_path = NodePath("../../Camera")
+update_rotation = false
+update_scale = false
 
 [node name="BodyProj" parent="." instance=ExtResource("2_54fnr")]
-
-[node name="levelCamera" parent="." instance=ExtResource("4_k4mav")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerHealthBar" parent="CanvasLayer" node_paths=PackedStringArray("health") instance=ExtResource("6_yalaj")]
 health = NodePath("../../PlayerCharacter/Health")
 
+[node name="Camera" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="levelCamera" parent="Camera" instance=ExtResource("4_k4mav")]
+unique_name_in_owner = true
+
 [editable path="PlayerCharacter"]
+[editable path="PlayerCharacter/Hitbox"]
 [editable path="PlayerCharacter/Hurtbox"]
