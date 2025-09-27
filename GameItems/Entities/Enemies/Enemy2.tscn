@@ -81,8 +81,10 @@ region = Rect2(2032, 8, 16, 4)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7gec2"]
 radius = 8.062258
 
-[node name="Enemy2" instance=ExtResource("1_8xh77")]
+[node name="Enemy2" node_paths=PackedStringArray("enemy_die_particles", "enemy_hurt_particles") instance=ExtResource("1_8xh77")]
 script = ExtResource("2_8467q")
+enemy_die_particles = NodePath("Particles/Enemy2DieParticles")
+enemy_hurt_particles = NodePath("Particles/Enemy2HurtParticle")
 stats = SubResource("Resource_8xh77")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
