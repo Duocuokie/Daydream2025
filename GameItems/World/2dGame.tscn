@@ -27,6 +27,7 @@ process_mode = 3
 [node name="Retry" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 100
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Retry"]
 offset_right = 650.0
@@ -45,3 +46,10 @@ texture_hover = SubResource("AtlasTexture_jvqa0")
 [node name="World" parent="." instance=ExtResource("2_b32cg")]
 
 [connection signal="pressed" from="Retry/retryButton" to="." method="_on_retry_button_pressed"]
+
+[editable path="World"]
+[editable path="World/Player"]
+[editable path="World/Player/PlayerCharacter"]
+[editable path="World/Player/PlayerCharacter/Hitbox"]
+[editable path="World/Player/PlayerCharacter/Hurtbox"]
+[editable path="World/Enemies"]

@@ -33,7 +33,7 @@ var hitCount := 0 : set = hitCountSetter
 @export var bodyProj: BodyProj 
 var isShot := false : set = isShotSetter
 var charge := 0
-
+var startBuffer := true
 
 
 #signals
@@ -85,7 +85,7 @@ func _physics_process(delta):
 			else:
 				maxSpeed = baseSpeed
 	if Input.is_action_just_released("shoot"):
-		if !isShot: 
+		if !isShot && !startBuffer: 
 			%Sprite2D.frame = 0
 			if wasNotHolding: # SHOOT
 				isShot = true
@@ -148,3 +148,7 @@ func _on_health_die() -> void:
 	print("die")
 	SignalBus.playerDie.emit()
 	fsm.change_state(nostate)
+
+
+func _on_start_timer_timeout() -> void:
+	startBuffer = false
