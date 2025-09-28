@@ -39,3 +39,8 @@ func _on_music_toggled(_toggled_on: bool) -> void:
 func _on_tutorial_pressed() -> void:
 	%Pause.visible = true
 	tutorial.visible = true
+
+
+func _on_close_pressed() -> void:
+	%Pause.visible = false
+	tutorial.visible = false

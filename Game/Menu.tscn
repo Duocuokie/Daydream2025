@@ -10,6 +10,18 @@ font = ExtResource("3_pt7f4")
 font_size = 32
 font_color = Color(0.992157, 0.988235, 0.901961, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(0, 1840, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbyfi"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(64, 1840, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(32, 1840, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5hwh"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(0, 1456, 160, 96)
@@ -37,18 +49,6 @@ region = Rect2(0, 1776, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm2id"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(32, 1776, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
-atlas = ExtResource("2_dpoqp")
-region = Rect2(0, 1840, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbyfi"]
-atlas = ExtResource("2_dpoqp")
-region = Rect2(64, 1840, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
-atlas = ExtResource("2_dpoqp")
-region = Rect2(32, 1840, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkq7b"]
 atlas = ExtResource("2_dpoqp")
@@ -84,13 +84,13 @@ unique_name_in_owner = true
 layer = 999999999
 visible = false
 
-[node name="Retry" type="ColorRect" parent="tutorial"]
+[node name="Info" type="ColorRect" parent="tutorial"]
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.741176)
 
-[node name="Label" type="Label" parent="tutorial/Retry"]
+[node name="Label" type="Label" parent="tutorial/Info"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 96.0
@@ -98,12 +98,21 @@ offset_right = 570.0
 offset_bottom = 128.0
 text = "Hold Left Click to Charge an Attack
 Release to Fire the Attack
-Right Click to Dash if you have 
-Enough Dash Power
-Heal by Using Powerful Attacks
+Hold Left Click when released to travel
+towards the body part.
+Heal by ramming into many enemies
 
 "
 label_settings = SubResource("LabelSettings_lf5a5")
+
+[node name="Close" type="TextureButton" parent="tutorial"]
+offset_left = 502.0
+offset_top = 280.0
+offset_right = 534.0
+offset_bottom = 312.0
+texture_normal = SubResource("AtlasTexture_e5tw8")
+texture_pressed = SubResource("AtlasTexture_bbyfi")
+texture_hover = SubResource("AtlasTexture_pr36n")
 
 [node name="Play" type="TextureButton" parent="."]
 layout_mode = 0
@@ -188,6 +197,7 @@ offset_right = 650.0
 offset_bottom = 373.0
 color = Color(0, 0, 0, 0.53333336)
 
+[connection signal="pressed" from="tutorial/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
 [connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
