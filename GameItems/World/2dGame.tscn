@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0oayulohau4e"]
+[gd_scene load_steps=9 format=3 uid="uid://b0oayulohau4e"]
 
 [ext_resource type="Script" uid="uid://b411ng3mka0nv" path="res://GameItems/World/world.gd" id="1_jvqa0"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_2cqbv"]
 [ext_resource type="PackedScene" uid="uid://cwoxar3sgss1r" path="res://GameItems/World/World.tscn" id="2_b32cg"]
+[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_yk3xw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1rcj"]
 atlas = ExtResource("2_2cqbv")
@@ -16,13 +17,28 @@ region = Rect2(64, 1872, 64, 64)
 atlas = ExtResource("2_2cqbv")
 region = Rect2(128, 1872, 64, 64)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvqa0"]
+resource_local_to_scene = true
+shader = ExtResource("4_yk3xw")
+shader_parameter/active = false
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/trans = 0.8
+
 [node name="2D Game" type="Node2D" node_paths=PackedStringArray("world")]
 process_mode = 3
 script = ExtResource("1_jvqa0")
 world = NodePath("World")
 
 [node name="Pause" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 process_mode = 3
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+offset_right = 650.0
+offset_bottom = 373.0
+color = Color(0, 0, 0, 0.53333336)
 
 [node name="Retry" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -44,6 +60,9 @@ texture_pressed = SubResource("AtlasTexture_yk3xw")
 texture_hover = SubResource("AtlasTexture_jvqa0")
 
 [node name="World" parent="." instance=ExtResource("2_b32cg")]
+
+[node name="Sprite2D" parent="World/Player/PlayerCharacter" index="0"]
+material = SubResource("ShaderMaterial_jvqa0")
 
 [connection signal="pressed" from="Retry/retryButton" to="." method="_on_retry_button_pressed"]
 

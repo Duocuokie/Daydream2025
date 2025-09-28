@@ -19,7 +19,9 @@ func retry():
 	%Retry.visible = false
 	get_tree().paused = false
 	
-
-
+func _unhandled_key_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = !get_tree().paused
+		%Pause.visible = !%Pause.visible
 func _on_retry_button_pressed() -> void:
 	retry()

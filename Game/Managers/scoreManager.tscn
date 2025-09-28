@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://br4dxbogvso1x"]
+
+[ext_resource type="Script" uid="uid://b0tv6p2i66vxg" path="res://Game/Managers/scoreManager.gd" id="1_5gh72"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_e00ru"]
+[ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="2_v7bae"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ae4p3"]
+font = ExtResource("2_v7bae")
+font_color = Color(0.741176, 0.85098, 0.870588, 1)
+outline_size = 4
+outline_color = Color(0.129412, 0.0470588, 0.235294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7hqol"]
+font = ExtResource("2_v7bae")
+font_size = 32
+font_color = Color(0.992157, 0.988235, 0.901961, 1)
+outline_size = 8
+outline_color = Color(0.129412, 0.0470588, 0.235294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fqtmr"]
+font = ExtResource("2_v7bae")
+font_color = Color(0.992157, 0.988235, 0.901961, 1)
+outline_size = 4
+outline_color = Color(0.129412, 0.0470588, 0.235294, 1)
+
+[node name="ScoreManager" type="Node2D"]
+script = ExtResource("1_5gh72")
+PlayerStats = ExtResource("2_e00ru")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HighScore" type="Label" parent="CanvasLayer"]
+z_index = 50
+offset_left = 448.0
+offset_top = 2.0
+offset_right = 632.0
+offset_bottom = 34.0
+text = "1000000"
+label_settings = SubResource("LabelSettings_ae4p3")
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+z_index = 50
+offset_left = 448.0
+offset_top = 16.0
+offset_right = 632.0
+offset_bottom = 48.0
+text = "1000000"
+label_settings = SubResource("LabelSettings_7hqol")
+horizontal_alignment = 2
+
+[node name="Combo" type="Label" parent="CanvasLayer"]
+z_index = 50
+offset_left = 392.0
+offset_top = 48.0
+offset_right = 632.0
+offset_bottom = 71.0
+text = "x200"
+label_settings = SubResource("LabelSettings_fqtmr")
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

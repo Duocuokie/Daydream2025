@@ -13,7 +13,7 @@ func _ready():
 func _enter_state() -> void:
 	set_physics_process(true)
 	enemy.emit_signal("enemyDied")
-
+	SignalBus.enemyDie.emit(enemy.stats.score)
 	anim.play("die")
 
 func _exit_state() -> void:
