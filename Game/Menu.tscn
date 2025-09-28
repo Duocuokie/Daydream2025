@@ -1,14 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=23 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
 [ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
-font = ExtResource("3_pt7f4")
-font_size = 32
-font_color = Color(0.992157, 0.988235, 0.901961, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
 atlas = ExtResource("2_dpoqp")
@@ -21,6 +16,23 @@ region = Rect2(64, 1840, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(32, 1840, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
+font = ExtResource("3_pt7f4")
+font_size = 32
+font_color = Color(0.992157, 0.988235, 0.901961, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1t3a"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(32, 1424, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnbhi"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(32, 1360, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tofi3"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(32, 1392, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5hwh"]
 atlas = ExtResource("2_dpoqp")
@@ -82,15 +94,24 @@ position = Vector2(320, 180)
 [node name="tutorial" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 999999999
-visible = false
 
-[node name="Info" type="ColorRect" parent="tutorial"]
+[node name="Close" type="TextureButton" parent="tutorial"]
+z_index = 99
+offset_left = 503.0
+offset_top = 280.0
+offset_right = 535.0
+offset_bottom = 312.0
+texture_normal = SubResource("AtlasTexture_e5tw8")
+texture_pressed = SubResource("AtlasTexture_bbyfi")
+texture_hover = SubResource("AtlasTexture_pr36n")
+
+[node name="Slide1" type="ColorRect" parent="tutorial"]
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.741176)
 
-[node name="Label" type="Label" parent="tutorial/Info"]
+[node name="Label" type="Label" parent="tutorial/Slide1"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 96.0
@@ -105,14 +126,32 @@ Heal by ramming into many enemies
 "
 label_settings = SubResource("LabelSettings_lf5a5")
 
-[node name="Close" type="TextureButton" parent="tutorial"]
-offset_left = 502.0
+[node name="Slide2" type="ColorRect" parent="tutorial"]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.741176)
+
+[node name="Label" type="Label" parent="tutorial/Slide2"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 96.0
+offset_right = 570.0
+offset_bottom = 128.0
+text = "There are four enemies:
+A basic enemy
+"
+label_settings = SubResource("LabelSettings_lf5a5")
+
+[node name="SlideChange" type="TextureButton" parent="tutorial"]
+offset_left = 444.0
 offset_top = 280.0
-offset_right = 534.0
-offset_bottom = 312.0
-texture_normal = SubResource("AtlasTexture_e5tw8")
-texture_pressed = SubResource("AtlasTexture_bbyfi")
-texture_hover = SubResource("AtlasTexture_pr36n")
+offset_right = 484.0
+offset_bottom = 320.0
+texture_normal = SubResource("AtlasTexture_k1t3a")
+texture_pressed = SubResource("AtlasTexture_hnbhi")
+texture_hover = SubResource("AtlasTexture_tofi3")
 
 [node name="Play" type="TextureButton" parent="."]
 layout_mode = 0
@@ -172,6 +211,7 @@ texture_normal = SubResource("AtlasTexture_hkq7b")
 texture_pressed = SubResource("AtlasTexture_e1wio")
 
 [node name="Stars" type="Sprite2D" parent="."]
+visible = false
 z_index = -4095
 position = Vector2(318, 132.00005)
 scale = Vector2(2.5351563, 2.5351563)
@@ -198,6 +238,7 @@ offset_bottom = 373.0
 color = Color(0, 0, 0, 0.53333336)
 
 [connection signal="pressed" from="tutorial/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="tutorial/SlideChange" to="." method="_on_slide_change_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
 [connection signal="toggled" from="Music" to="." method="_on_music_toggled"]

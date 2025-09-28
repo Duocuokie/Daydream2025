@@ -3,6 +3,9 @@ extends Control
 @onready var music: TextureButton = $Music
 @onready var sfx: TextureButton = $SFX
 @onready var tutorial: CanvasLayer = $tutorial
+@onready var slide_1: ColorRect = $tutorial/Slide1
+@onready var slide_2: ColorRect = $tutorial/Slide2
+@onready var slide_change: TextureButton = $tutorial/SlideChange
 
 
 
@@ -44,3 +47,8 @@ func _on_tutorial_pressed() -> void:
 func _on_close_pressed() -> void:
 	%Pause.visible = false
 	tutorial.visible = false
+
+func _on_slide_change_pressed() -> void:
+	slide_change.flip_h = !slide_change.flip_h
+	slide_1.visible = !slide_1.visible
+	slide_2.visible = !slide_2.visible
