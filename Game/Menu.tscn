@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=25 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
@@ -71,6 +71,9 @@ region = Rect2(832, 528, 32, 32)
 atlas = ExtResource("2_dpoqp")
 region = Rect2(864, 528, 32, 32)
 
+[sub_resource type="LabelSettings" id="LabelSettings_q6y81"]
+font = ExtResource("3_pt7f4")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijs0n"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(64, 1744, 32, 32)
@@ -95,6 +98,7 @@ position = Vector2(320, 180)
 [node name="tutorial" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 999999999
+visible = false
 
 [node name="Close" type="TextureButton" parent="tutorial"]
 z_index = 99
@@ -125,7 +129,7 @@ Release to Fire the Attack
 
 Hold Left Click when released to travel
 
-towards the body part.
+towards the body part
 
 Heal by ramming into many enemies
 
@@ -146,19 +150,19 @@ offset_top = 13.0
 offset_right = 607.0
 offset_bottom = 360.0
 text = "There are four enemies:
-Venus and Mercury- takes all damage
+Takes all damage
 
 
-Neptune - takes ramming damage
+Takes ramming damage
 
 
-Mars - takes projectile damage
+Takes projectile damage
 
 "
 label_settings = SubResource("LabelSettings_lf5a5")
 
 [node name="Enemies" type="Sprite2D" parent="tutorial/Slide2"]
-position = Vector2(146.00002, 227)
+position = Vector2(180, 227)
 scale = Vector2(1.890625, 1.890625)
 texture = ExtResource("4_q6y81")
 
@@ -230,14 +234,21 @@ texture_normal = SubResource("AtlasTexture_hkq7b")
 texture_pressed = SubResource("AtlasTexture_e1wio")
 
 [node name="Stars" type="Sprite2D" parent="."]
-visible = false
 z_index = -4095
 position = Vector2(318, 132.00005)
 scale = Vector2(2.5351563, 2.5351563)
 texture = ExtResource("4_ijs0n")
 
+[node name="TutorialLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 288.0
+offset_right = 503.0
+offset_bottom = 311.0
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_q6y81")
+
 [node name="Tutorial" type="TextureButton" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 503.0
 offset_top = 280.0
