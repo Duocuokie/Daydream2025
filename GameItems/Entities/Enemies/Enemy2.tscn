@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://32p2h6wbson6"]
+[gd_scene load_steps=31 format=3 uid="uid://32p2h6wbson6"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_8xh77"]
 [ext_resource type="Script" uid="uid://7o6m6fa2rbvy" path="res://GameItems/Entities/Enemies/basicEnemy.gd" id="2_8467q"]
@@ -11,12 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="9_8nkpk"]
 [ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="10_e0mmv"]
 [ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="11_xwa25"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="12_eqiyo"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="12_eqiyo"]
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="13_dbiff"]
 [ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="14_ycmhm"]
 [ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="15_psq1g"]
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="16_wndwx"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="17_n6y08"]
+[ext_resource type="AudioStream" uid="uid://c0uoqciqidytl" path="res://GameItems/Entities/Enemies/ehit.ogg" id="18_p46ry"]
+[ext_resource type="AudioStream" uid="uid://bl2wpckmv54y6" path="res://GameItems/Entities/Enemies/edie.ogg" id="19_4uu5d"]
 
 [sub_resource type="Resource" id="Resource_8xh77"]
 script = ExtResource("3_p46ry")
@@ -162,6 +164,14 @@ actor = NodePath("..")
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource("CircleShape2D_7gec2")
+
+[node name="ehit" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("18_p46ry")
+bus = &"SFX"
+
+[node name="edie" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("19_4uu5d")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]

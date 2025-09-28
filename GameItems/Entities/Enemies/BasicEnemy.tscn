@@ -165,9 +165,11 @@ shape = SubResource("CircleShape2D_mtapn")
 
 [node name="ehit" type="AudioStreamPlayer" parent="." index="10"]
 stream = ExtResource("18_16p0v")
+bus = &"SFX"
 
 [node name="edie" type="AudioStreamPlayer" parent="." index="11"]
 stream = ExtResource("19_sf7vc")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
