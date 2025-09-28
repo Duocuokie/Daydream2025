@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
-[ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
 [ext_resource type="Texture2D" uid="uid://c4yqy3lh6g0ng" path="res://Textures/playerTutorial.png" id="4_k1t3a"]
 [ext_resource type="Texture2D" uid="uid://15vok4jwhxr4" path="res://Textures/enemies.png" id="4_q6y81"]
+[ext_resource type="Texture2D" uid="uid://c20o3771yoxlx" path="res://Textures/title.png" id="6_hnbhi"]
 [ext_resource type="AudioStream" uid="uid://dajaygh5nlds1" path="res://Audio/dream.ogg" id="7_hnbhi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
@@ -92,6 +92,7 @@ position = Vector2(320, 180)
 [node name="tutorial" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 999999999
+visible = false
 
 [node name="Slide1" type="ColorRect" parent="tutorial"]
 z_index = 9
@@ -220,9 +221,8 @@ autoplay = true
 
 [node name="Stars" type="Sprite2D" parent="."]
 z_index = -4095
-position = Vector2(318, 132.00005)
-scale = Vector2(2.5351563, 2.5351563)
-texture = ExtResource("4_ijs0n")
+position = Vector2(320, 180)
+texture = ExtResource("6_hnbhi")
 
 [node name="TutorialLabel" type="Label" parent="."]
 layout_mode = 0
