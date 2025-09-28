@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0oayulohau4e"]
+[gd_scene load_steps=10 format=3 uid="uid://b0oayulohau4e"]
 
 [ext_resource type="Script" uid="uid://b411ng3mka0nv" path="res://GameItems/World/world.gd" id="1_jvqa0"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_2cqbv"]
 [ext_resource type="PackedScene" uid="uid://cwoxar3sgss1r" path="res://GameItems/World/World.tscn" id="2_b32cg"]
+[ext_resource type="Script" uid="uid://cqhlqjho8moih" path="res://GameItems/World/worldscore.gd" id="4_jvqa0"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_yk3xw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1rcj"]
@@ -60,6 +61,7 @@ texture_pressed = SubResource("AtlasTexture_yk3xw")
 texture_hover = SubResource("AtlasTexture_jvqa0")
 
 [node name="World" parent="." instance=ExtResource("2_b32cg")]
+script = ExtResource("4_jvqa0")
 
 [node name="Sprite2D" parent="World/Player/PlayerCharacter" index="0"]
 material = SubResource("ShaderMaterial_jvqa0")

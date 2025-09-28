@@ -19,8 +19,8 @@ func _ready() -> void:
 	SignalBus.playerDie.connect(saveHighscore)
 	
 	
-	var high = SignalBus.highscore
-	highscore.text = str(high)
+
+	highscore.text = str(SignalBus.highscore)
 	set_process(false)
 	
 func _process(delta: float) -> void:
@@ -49,5 +49,6 @@ func saveHighscore():
 	if Score > high:
 		var SaveGame = FileAccess.open("user://highscore", FileAccess.WRITE)
 		SaveGame.store_32(Score)
+		SignalBus.highscore = Score
 	
 	
