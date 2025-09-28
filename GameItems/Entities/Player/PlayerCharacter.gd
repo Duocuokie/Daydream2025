@@ -81,7 +81,7 @@ func _physics_process(delta):
 	
 	%indicator.visible = isShot && bodyProj.hasHit
 		
-	if isShot and global_position.distance_to(bodyProj.global_position) > 300:
+	if isShot and global_position.distance_to(bodyProj.global_position) > 200:
 		arrow.show()
 		arrow.self_modulate.a = clamp((global_position.distance_to(bodyProj.global_position) - 300)/200, 0, 1)
 		var arrowDirection = (global_position.direction_to(bodyProj.global_position))
