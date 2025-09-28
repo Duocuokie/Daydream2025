@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://uvf3ppg3smev"]
+[gd_scene load_steps=31 format=3 uid="uid://uvf3ppg3smev"]
 
 [ext_resource type="Script" uid="uid://de3ikb265tx7a" path="res://GameItems/Entities/Player/PlayerCharacter.gd" id="1_88lmo"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="2_2hpnf"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://GameItems/States/nostate.tscn" id="11_g17nx"]
 [ext_resource type="AudioStream" uid="uid://cqlnvd5nh0rtk" path="res://Audio/pop.mp3" id="14_rb538"]
 [ext_resource type="AudioStream" uid="uid://bjnldesa2vi7m" path="res://Audio/wooshing.mp3" id="15_u54rk"]
+[ext_resource type="AudioStream" uid="uid://dudyq1g0bgjon" path="res://Audio/damage.mp3" id="16_u54rk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g17nx"]
 resource_local_to_scene = true
@@ -207,6 +208,9 @@ stream = ExtResource("14_rb538")
 [node name="Woosh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_u54rk")
 volume_db = -7.062
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_u54rk")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]

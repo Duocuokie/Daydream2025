@@ -54,6 +54,7 @@ signal playerHit
 @onready var nostate: Node = $StateMachine/nostate
 @onready var shoot: AudioStreamPlayer = $Shoot
 @onready var woosh: AudioStreamPlayer = $Woosh
+@onready var damage: AudioStreamPlayer2D = $Damage
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -137,6 +138,7 @@ func isShotSetter(value):
 
 func _on_hurtbox_area_entered(area: Hitbox) -> void:
 	print(%Health)
+	damage.play()
 	if %Health.health > 0 && isShot:
 		%Health.health -= area.damage
 	hurterPos = area.global_position
