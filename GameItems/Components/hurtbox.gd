@@ -53,3 +53,7 @@ func _on_area_entered(area):
 		if area.get_parent() is BodyProj:
 			startInvis(area.invis)
 			health.health -= area.damage
+	elif resist == 3:
+		if area.get_parent() is Enemy4:
+			startInvis(area.invis)
+			health.health -= area.damage

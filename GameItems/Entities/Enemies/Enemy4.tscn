@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dg37hqoyyumce"]
+[gd_scene load_steps=29 format=3 uid="uid://dg37hqoyyumce"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_teb88"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_kcbop"]
 [ext_resource type="Script" uid="uid://xserchu5of8s" path="res://GameItems/Entities/Enemies/enemy4.gd" id="2_u536l"]
+[ext_resource type="Script" uid="uid://wbjqgxcagmmk" path="res://GameItems/rescources/enemyStats.gd" id="3_ohr18"]
 [ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://GameItems/Components/hitbox.tscn" id="3_u536l"]
 [ext_resource type="PackedScene" uid="uid://bkh68d1nm7si7" path="res://GameItems/Components/hurtbox.tscn" id="4_ohr18"]
 [ext_resource type="PackedScene" uid="uid://b8c3iae8i7kjo" path="res://GameItems/Components/health.tscn" id="5_6fksu"]
@@ -16,6 +17,17 @@
 [ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="13_n6n6f"]
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="14_76160"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="15_1jusd"]
+
+[sub_resource type="Resource" id="Resource_6fksu"]
+script = ExtResource("3_ohr18")
+maxSpeed = 80
+acceleration = 2000
+friction = 2000
+maxHp = 50
+baseDamage = 15
+kbRes = 0.1
+score = 5
+metadata/_custom_type_script = "uid://wbjqgxcagmmk"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ynka0"]
 radius = 6.0827627
@@ -72,8 +84,11 @@ region = Rect2(2032, 8, 16, 4)
 resource_local_to_scene = true
 radius = 6.0827627
 
-[node name="Enemy4" instance=ExtResource("1_teb88")]
+[node name="Enemy4" node_paths=PackedStringArray("enemy_die_particles", "enemy_hurt_particles") instance=ExtResource("1_teb88")]
 script = ExtResource("2_u536l")
+enemy_die_particles = NodePath("Particles/BasicEnemy1DieParticles")
+enemy_hurt_particles = NodePath("Particles/BasicEnemy1HurtParticles")
+stats = SubResource("Resource_6fksu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_kcbop")
@@ -86,15 +101,18 @@ shape = SubResource("CircleShape2D_ynka0")
 [node name="Hitbox" parent="." index="2" instance=ExtResource("3_u536l")]
 collision_layer = 128
 collision_mask = 16
-script = null
+damage = 15
+invis = 0.5
+knockback = 600
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_4inbk")
 
-[node name="Hurtbox" parent="." index="3" instance=ExtResource("4_ohr18")]
+[node name="Hurtbox" parent="." index="3" node_paths=PackedStringArray("health") instance=ExtResource("4_ohr18")]
 collision_layer = 64
 collision_mask = 16
-script = null
+resist = 2
+health = NodePath("../Health")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource("CircleShape2D_00pw2")
@@ -104,27 +122,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_2wxxd")
 }
 
-[node name="StateMachine" parent="." index="5" instance=ExtResource("6_wsjdo")]
-script = null
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("state") instance=ExtResource("6_wsjdo")]
+state = NodePath("enemyMove")
 
 [node name="enemyDie" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("7_y11cn")]
-enemy = NodePath("")
-anim = NodePath("")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
 
 [node name="enemyIdle" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy", "anim") instance=ExtResource("8_2sr77")]
-enemy = NodePath("")
-anim = NodePath("")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
 
 [node name="enemyMove" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy", "anim", "spr") instance=ExtResource("9_ofk5f")]
 importantStats = ExtResource("10_fcxvq")
-enemy = NodePath("")
-anim = NodePath("")
-spr = NodePath("")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+spr = NodePath("../../Sprite2D")
 
 [node name="enemyHurt" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("enemy", "anim")]
 script = ExtResource("11_xa4de")
-enemy = NodePath("")
-anim = NodePath("")
+enemy = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://bkg071dhc6y8c"
 
 [node name="EntityHealthBar" parent="." index="6" instance=ExtResource("12_pqgpn")]
@@ -132,7 +150,6 @@ offset_top = -22.0
 offset_bottom = 18.0
 texture_under = SubResource("AtlasTexture_13dm0")
 texture_progress = SubResource("AtlasTexture_66u7j")
-script = null
 
 [node name="Particles" type="Node2D" parent="." index="7"]
 
@@ -140,14 +157,18 @@ script = null
 
 [node name="BasicEnemy1HurtParticles" parent="Particles" index="1" instance=ExtResource("14_76160")]
 
-[node name="SoftCollision" parent="." index="8" instance=ExtResource("15_1jusd")]
-script = null
+[node name="SoftCollision" parent="." index="8" node_paths=PackedStringArray("actor") instance=ExtResource("15_1jusd")]
+actor = NodePath("..")
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource("CircleShape2D_3ayv1")
 
 [node name="Health" parent="." index="9" instance=ExtResource("5_6fksu")]
 maxHealth = 50
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="healthChanged" from="Health" to="EntityHealthBar" method="_on_health_health_changed"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

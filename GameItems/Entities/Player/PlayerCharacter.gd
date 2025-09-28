@@ -175,3 +175,14 @@ func _on_health_die() -> void:
 
 func _on_start_timer_timeout() -> void:
 	startBuffer = false
+
+
+func _on_hurtbox_2_area_entered(area: Area2D) -> void:
+	if area.get_parent() is Enemy4 && !%Hurtbox.monitoring:
+		%Health.health -= area.damage
+		hurterPos = area.global_position
+		hurterDir = (area.global_position - global_position).normalized().rotated(0.5)
+		velocity = hurterDir * area.knockback * -1
+		hurt_particles.emitting = true
+		hurt_particles.restart()
+		%Flash.play("flash", 0, 1/area.invis)

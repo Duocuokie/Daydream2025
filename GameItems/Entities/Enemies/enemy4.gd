@@ -36,7 +36,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 		hurterDir = (area.global_position - global_position).normalized()
 		hurterPos = area.global_position
 		enemyHurt.kbres = stats.kbRes
-		enemyHurt.wkb = area.knockback/2
+		enemyHurt.wkb = area.knockback/8
 		if stateMachine.state != enemyDie:
 			stateMachine.change_state(enemyHurt)
 			enemy_hurt_particles.emitting = true

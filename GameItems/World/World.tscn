@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 [ext_resource type="PackedScene" uid="uid://br4dxbogvso1x" path="res://Game/Managers/scoreManager.tscn" id="7_tb07u"]
-[ext_resource type="PackedScene" uid="uid://dle1ivpnfuwt1" path="res://GameItems/Entities/Enemies/Enemy3.tscn" id="8_4drrk"]
+[ext_resource type="PackedScene" uid="uid://dg37hqoyyumce" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="8_4drrk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jpvdc"]
 texture = ExtResource("2_jpvdc")
@@ -62,11 +62,12 @@ position = Vector2(1, 1)
 
 [node name="ScoreManager" parent="." instance=ExtResource("7_tb07u")]
 
-[node name="Enemy3" parent="." instance=ExtResource("8_4drrk")]
-position = Vector2(118, 155)
+[node name="Enemy4" parent="." instance=ExtResource("8_4drrk")]
+position = Vector2(312, 194)
 
 [editable path="Player"]
 [editable path="Player/PlayerCharacter"]
 [editable path="Player/PlayerCharacter/Hitbox"]
 [editable path="Player/PlayerCharacter/Hurtbox"]
+[editable path="Player/PlayerCharacter/Hurtbox2"]
 [editable path="Enemies"]
