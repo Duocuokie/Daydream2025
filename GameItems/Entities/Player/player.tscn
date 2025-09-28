@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3m68cqxlv1jb"]
+[gd_scene load_steps=8 format=3 uid="uid://b3m68cqxlv1jb"]
 
 [ext_resource type="Script" uid="uid://byfr2i7fno0v1" path="res://GameItems/Entities/Player/Player.gd" id="1_54fnr"]
 [ext_resource type="PackedScene" uid="uid://uvf3ppg3smev" path="res://GameItems/Entities/Player/PlayerCharacter.tscn" id="1_t3336"]
 [ext_resource type="PackedScene" uid="uid://c6fwo15o0g6wh" path="res://GameItems/Entities/Player/bodyProj.tscn" id="2_54fnr"]
 [ext_resource type="PackedScene" uid="uid://bem02o7ehhy4a" path="res://GameItems/World/levelCamera.tscn" id="4_k4mav"]
+[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="6_ipcq1"]
 [ext_resource type="PackedScene" uid="uid://dsa3jut4qa2rj" path="res://GameItems/Entities/Player/playerHealthBar.tscn" id="6_yalaj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd23d"]
+resource_local_to_scene = true
+shader = ExtResource("6_ipcq1")
+shader_parameter/active = false
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/trans = 0.8
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_54fnr")
@@ -25,9 +33,19 @@ unique_name_in_owner = true
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("bodyProj") instance=ExtResource("1_t3336")]
 bodyProj = NodePath("../BodyProj")
 
+[node name="Sprite2D" parent="PlayerCharacter" index="0"]
+material = SubResource("ShaderMaterial_yd23d")
+
+[node name="Shoot" parent="PlayerCharacter" index="12"]
+bus = &"SFX"
+
+[node name="Woosh" parent="PlayerCharacter" index="13"]
+bus = &"SFX"
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerCharacter"]
 remote_path = NodePath("../../Camera")
 
 [editable path="PlayerCharacter"]
 [editable path="PlayerCharacter/Hitbox"]
 [editable path="PlayerCharacter/Hurtbox"]
+[editable path="PlayerCharacter/Hurtbox2"]

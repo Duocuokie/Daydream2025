@@ -54,7 +54,7 @@ signal playerHit
 @onready var nostate: Node = $StateMachine/nostate
 @onready var shoot: AudioStreamPlayer = $Shoot
 @onready var woosh: AudioStreamPlayer = $Woosh
-@onready var damage: AudioStreamPlayer2D = $Damage
+@onready var damage: AudioStreamPlayer = $Damage
 @onready var death_particles: GPUParticles2D = $Particles/DeathParticles
 @onready var arrow: Sprite2D = $arrow
 

@@ -115,6 +115,33 @@ texture_normal = SubResource("AtlasTexture_i1rcj")
 texture_pressed = SubResource("AtlasTexture_yk3xw")
 texture_hover = SubResource("AtlasTexture_jvqa0")
 
+[node name="SFX" type="TextureButton" parent="Retry"]
+offset_left = 550.0
+offset_top = 320.0
+offset_right = 582.0
+offset_bottom = 352.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_2cqbv")
+texture_pressed = SubResource("AtlasTexture_iaix6")
+
+[node name="Music" type="TextureButton" parent="Retry"]
+offset_left = 597.0
+offset_top = 320.0
+offset_right = 629.0
+offset_bottom = 352.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_hl3ed")
+texture_pressed = SubResource("AtlasTexture_7d83o")
+
+[node name="Quit" type="TextureButton" parent="Retry"]
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 56.0
+offset_bottom = 344.0
+texture_normal = SubResource("AtlasTexture_xeovw")
+texture_pressed = SubResource("AtlasTexture_eteqh")
+texture_hover = SubResource("AtlasTexture_18d8s")
+
 [node name="World" parent="." instance=ExtResource("2_b32cg")]
 
 [node name="Sprite2D" parent="World/Player/PlayerCharacter" index="0"]
@@ -126,7 +153,13 @@ volume_db = -2.0
 autoplay = true
 bus = &"Music"
 
+[connection signal="pressed" from="Pause/SFX" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="Pause/Music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="Pause/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Retry/retryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Retry/SFX" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="Retry/Music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="Retry/Quit" to="." method="_on_quit_pressed"]
 
 [editable path="World"]
 [editable path="World/Player"]

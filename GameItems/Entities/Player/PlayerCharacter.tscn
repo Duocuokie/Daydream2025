@@ -213,7 +213,7 @@ stream = ExtResource("14_rb538")
 stream = ExtResource("15_u54rk")
 volume_db = -7.062
 
-[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+[node name="Damage" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_u54rk")
 
 [node name="arrow" parent="." instance=ExtResource("18_8jm47")]

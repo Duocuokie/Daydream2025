@@ -10,13 +10,14 @@ const GAME = preload("res://GameItems/World/2dGame.tscn")
 func _ready() -> void:
 	current2D = scene2d.get_child(0)
 	SignalBus.gameStart.connect(switch2DScene.bind(GAME))
+	SignalBus.gameMenu.connect(switch2DScene.bind(MENU))
 
 #Switches to a new scene and deletes old one
 func switch2DScene(newPackedScene : PackedScene) -> void:
 	var NewScene = newPackedScene.instantiate()
 	current2D.queue_free()
 	scene2d.add_child(NewScene)
-	current2D = scene2d.get_child(0)
+	current2D = NewScene
 	
 func _unhandled_key_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("fullscreen"):

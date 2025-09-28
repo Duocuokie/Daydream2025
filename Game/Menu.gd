@@ -33,10 +33,9 @@ func _ready() -> void:
 	tutorial.visible = false
 	music.button_pressed = AudioServer.is_bus_mute(Music)
 	sfx.button_pressed = AudioServer.is_bus_mute(SFX)
-func _on_sfx_toggled(_toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(SFX, !AudioServer.is_bus_mute(SFX))
-func _on_music_toggled(_toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(Music, !AudioServer.is_bus_mute(Music))
+
+
+	
 
 
 func _on_tutorial_pressed() -> void:
@@ -52,3 +51,10 @@ func _on_slide_change_pressed() -> void:
 	slide_change.flip_h = !slide_change.flip_h
 	slide_1.visible = !slide_1.visible
 	slide_2.visible = !slide_2.visible
+
+
+func _on_music_pressed() -> void:
+	AudioServer.set_bus_mute(Music, !AudioServer.is_bus_mute(Music))
+	
+func _on_sfx_pressed() -> void:
+	AudioServer.set_bus_mute(SFX, !AudioServer.is_bus_mute(SFX))

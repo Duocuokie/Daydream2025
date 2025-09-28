@@ -242,17 +242,6 @@ offset_bottom = 352.0
 texture_normal = SubResource("AtlasTexture_ijs0n")
 texture_pressed = SubResource("AtlasTexture_q6y81")
 
-[node name="Pause" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-layer = 100
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="Pause"]
-offset_right = 650.0
-offset_bottom = 373.0
-color = Color(0, 0, 0, 0.53333336)
-
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_hnbhi")
 volume_db = -4.0
@@ -262,7 +251,7 @@ bus = &"Music"
 [connection signal="pressed" from="tutorial/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="tutorial/SlideChange" to="." method="_on_slide_change_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
-[connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
-[connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
+[connection signal="pressed" from="SFX" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="Music" to="." method="_on_music_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
