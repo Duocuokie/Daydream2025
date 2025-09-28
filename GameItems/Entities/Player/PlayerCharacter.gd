@@ -56,6 +56,7 @@ signal playerHit
 @onready var woosh: AudioStreamPlayer = $Woosh
 @onready var damage: AudioStreamPlayer2D = $Damage
 @onready var death_particles: GPUParticles2D = $Particles/DeathParticles
+@onready var arrow: Sprite2D = $arrow
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -65,6 +66,7 @@ func _ready():
 
 	
 func _physics_process(delta):
+	
 	#print(wasNotHolding)
 	if velocity.length_squared() > 150000:
 		%Hitbox.set_deferred("monitorable", true)
@@ -75,7 +77,16 @@ func _physics_process(delta):
 	
 	importantStats.PlayerPos = global_position
 	var mouseRad = global_position.angle_to_point(get_global_mouse_position())
-	rotation = mouseRad
+	rotation = %Sprite2D.rotation - deg_to_rad(90)
+	
+	if isShot and global_position.distance_to(bodyProj.global_position) > 300:
+		arrow.show()
+		arrow.self_modulate.a = clamp((global_position.distance_to(bodyProj.global_position) - 300)/200, 0, 1)
+		var arrowDirection = (global_position.direction_to(bodyProj.global_position))
+		arrow.rotation = arrowDirection.angle() 
+	else:
+		arrow.hide()
+	
 	if Input.is_action_just_pressed("shoot") and bodyProj.hasHit:
 		woosh.play()
 	if Input.is_action_pressed("shoot"): 

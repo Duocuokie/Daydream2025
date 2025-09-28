@@ -217,7 +217,6 @@ volume_db = -7.062
 stream = ExtResource("16_u54rk")
 
 [node name="arrow" parent="." instance=ExtResource("18_8jm47")]
-self_modulate = Color(1, 1, 1, 0.3764706)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]

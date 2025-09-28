@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3qrxhxym25bm"]
+
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="1_wj84c"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_wj84c")
+offset = Vector2(0, 140)
+region_enabled = true
+region_rect = Rect2(0, 1424, 32, 32)
