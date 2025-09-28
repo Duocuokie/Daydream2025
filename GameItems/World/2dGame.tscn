@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://wn88rrab2p75"]
+[gd_scene load_steps=10 format=3 uid="uid://wn88rrab2p75"]
 
 [ext_resource type="Script" uid="uid://b411ng3mka0nv" path="res://GameItems/World/world.gd" id="1_jvqa0"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_2cqbv"]
 [ext_resource type="PackedScene" uid="uid://cwoxar3sgss1r" path="res://GameItems/World/World.tscn" id="2_b32cg"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_yk3xw"]
+[ext_resource type="AudioStream" uid="uid://br6vmeu10t2ji" path="res://Audio/daydream.ogg" id="5_jvqa0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1rcj"]
 atlas = ExtResource("2_2cqbv")
@@ -64,6 +65,12 @@ texture_hover = SubResource("AtlasTexture_jvqa0")
 [node name="Sprite2D" parent="World/Player/PlayerCharacter" index="0"]
 material = SubResource("ShaderMaterial_jvqa0")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jvqa0")
+volume_db = -2.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="Retry/retryButton" to="." method="_on_retry_button_pressed"]
 
 [editable path="World"]
@@ -71,4 +78,5 @@ material = SubResource("ShaderMaterial_jvqa0")
 [editable path="World/Player/PlayerCharacter"]
 [editable path="World/Player/PlayerCharacter/Hitbox"]
 [editable path="World/Player/PlayerCharacter/Hurtbox"]
+[editable path="World/Player/PlayerCharacter/Hurtbox2"]
 [editable path="World/Enemies"]

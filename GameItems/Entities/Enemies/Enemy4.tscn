@@ -20,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_6fksu"]
 script = ExtResource("3_ohr18")
-maxSpeed = 80
+maxSpeed = 100
 acceleration = 2000
 friction = 2000
 maxHp = 50

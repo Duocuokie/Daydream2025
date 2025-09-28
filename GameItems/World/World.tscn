@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwoxar3sgss1r"]
+[gd_scene load_steps=8 format=3 uid="uid://cwoxar3sgss1r"]
 
-[ext_resource type="Script" path="res://GameItems/World/worldscore.gd" id="1_6ew73"]
+[ext_resource type="Script" uid="uid://cqhlqjho8moih" path="res://GameItems/World/worldscore.gd" id="1_6ew73"]
 [ext_resource type="Texture2D" uid="uid://b0gq2mhb7ujlr" path="res://Textures/backgroundtile.png" id="3_60hvp"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_6ew73"]
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 [ext_resource type="PackedScene" uid="uid://br4dxbogvso1x" path="res://Game/Managers/scoreManager.tscn" id="7_tb07u"]
-[ext_resource type="PackedScene" uid="uid://dg37hqoyyumce" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="8_4drrk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tb07u"]
 resource_local_to_scene = true
@@ -45,9 +44,6 @@ update_scale = false
 position = Vector2(1, 1)
 
 [node name="ScoreManager" parent="." instance=ExtResource("7_tb07u")]
-
-[node name="Enemy4" parent="." instance=ExtResource("8_4drrk")]
-position = Vector2(312, 194)
 
 [editable path="Player"]
 [editable path="Player/PlayerCharacter"]
