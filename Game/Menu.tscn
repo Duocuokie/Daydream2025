@@ -107,7 +107,6 @@ texture_pressed = SubResource("AtlasTexture_bbyfi")
 texture_hover = SubResource("AtlasTexture_pr36n")
 
 [node name="Slide1" type="ColorRect" parent="tutorial"]
-visible = false
 z_index = 9
 offset_right = 640.0
 offset_bottom = 360.0
@@ -130,6 +129,7 @@ Heal by ramming into many enemies
 label_settings = SubResource("LabelSettings_lf5a5")
 
 [node name="Slide2" type="ColorRect" parent="tutorial"]
+visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
