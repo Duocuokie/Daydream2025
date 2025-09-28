@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dg37hqoyyumce"]
+[gd_scene load_steps=31 format=3 uid="uid://dg37hqoyyumce"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_teb88"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_kcbop"]
@@ -11,12 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="7_y11cn"]
 [ext_resource type="PackedScene" uid="uid://qolkpf7d4ihb" path="res://GameItems/States/Enemy/enemyIdle.tscn" id="8_2sr77"]
 [ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="9_ofk5f"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="10_fcxvq"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="10_fcxvq"]
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="11_xa4de"]
 [ext_resource type="PackedScene" uid="uid://dnugfkrra0amc" path="res://GameItems/Components/entitiyHealthBar.tscn" id="12_pqgpn"]
 [ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="13_n6n6f"]
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="14_76160"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="15_1jusd"]
+[ext_resource type="AudioStream" uid="uid://c0uoqciqidytl" path="res://GameItems/Entities/Enemies/ehit.ogg" id="18_6fksu"]
+[ext_resource type="AudioStream" uid="uid://bl2wpckmv54y6" path="res://GameItems/Entities/Enemies/edie.ogg" id="19_wsjdo"]
 
 [sub_resource type="Resource" id="Resource_6fksu"]
 script = ExtResource("3_ohr18")
@@ -165,6 +167,14 @@ shape = SubResource("CircleShape2D_3ayv1")
 
 [node name="Health" parent="." index="9" instance=ExtResource("5_6fksu")]
 maxHealth = 50
+
+[node name="ehit" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("18_6fksu")
+bus = &"SFX"
+
+[node name="edie" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("19_wsjdo")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
