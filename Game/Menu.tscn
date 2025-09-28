@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=24 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
 [ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
+[ext_resource type="Texture2D" uid="uid://15vok4jwhxr4" path="res://Textures/enemies.png" id="4_q6y81"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
 atlas = ExtResource("2_dpoqp")
@@ -106,6 +107,8 @@ texture_pressed = SubResource("AtlasTexture_bbyfi")
 texture_hover = SubResource("AtlasTexture_pr36n")
 
 [node name="Slide1" type="ColorRect" parent="tutorial"]
+visible = false
+z_index = 9
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
@@ -113,10 +116,10 @@ color = Color(0, 0, 0, 0.741176)
 
 [node name="Label" type="Label" parent="tutorial/Slide1"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 96.0
-offset_right = 570.0
-offset_bottom = 128.0
+offset_left = 57.0
+offset_top = 13.0
+offset_right = 617.0
+offset_bottom = 255.0
 text = "Hold Left Click to Charge an Attack
 Release to Fire the Attack
 Hold Left Click when released to travel
@@ -127,7 +130,6 @@ Heal by ramming into many enemies
 label_settings = SubResource("LabelSettings_lf5a5")
 
 [node name="Slide2" type="ColorRect" parent="tutorial"]
-visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
@@ -135,16 +137,29 @@ color = Color(0, 0, 0, 0.741176)
 
 [node name="Label" type="Label" parent="tutorial/Slide2"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 96.0
-offset_right = 570.0
-offset_bottom = 128.0
+offset_left = 57.0
+offset_top = 13.0
+offset_right = 607.0
+offset_bottom = 360.0
 text = "There are four enemies:
-A basic enemy
+Venus and Mercury- takes all damage
+
+
+Neptune - takes ramming damage
+
+
+Mars - takes projectile damage
+
 "
 label_settings = SubResource("LabelSettings_lf5a5")
 
+[node name="Enemies" type="Sprite2D" parent="tutorial/Slide2"]
+position = Vector2(146.00002, 227)
+scale = Vector2(1.890625, 1.890625)
+texture = ExtResource("4_q6y81")
+
 [node name="SlideChange" type="TextureButton" parent="tutorial"]
+z_index = 9
 offset_left = 444.0
 offset_top = 280.0
 offset_right = 484.0
