@@ -39,12 +39,10 @@ func _ready() -> void:
 
 
 func _on_tutorial_pressed() -> void:
-	%Pause.visible = true
 	tutorial.visible = true
 
 
 func _on_close_pressed() -> void:
-	%Pause.visible = false
 	tutorial.visible = false
 
 func _on_slide_change_pressed() -> void:

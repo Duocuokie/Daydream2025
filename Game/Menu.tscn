@@ -103,9 +103,9 @@ color = Color(0, 0, 0, 0.741176)
 [node name="Label" type="Label" parent="tutorial/Slide1"]
 layout_mode = 0
 offset_left = 57.0
-offset_top = 13.0
+offset_top = 5.0
 offset_right = 617.0
-offset_bottom = 255.0
+offset_bottom = 387.0
 text = "Hold Left Click to Charge an Attack
 
 Release to Fire the Attack
@@ -120,7 +120,7 @@ WASD Movement | | | F11 to Fullscreen
 label_settings = SubResource("LabelSettings_lf5a5")
 
 [node name="Player" type="Sprite2D" parent="tutorial/Slide1"]
-position = Vector2(512, 180.00002)
+position = Vector2(512, 172.00002)
 scale = Vector2(2.1191404, 2.1191404)
 texture = ExtResource("4_k1t3a")
 
@@ -219,6 +219,7 @@ volume_db = -5.0
 autoplay = true
 
 [node name="Stars" type="Sprite2D" parent="."]
+visible = false
 z_index = -4095
 position = Vector2(318, 132.00005)
 scale = Vector2(2.5351563, 2.5351563)
