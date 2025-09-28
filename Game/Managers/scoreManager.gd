@@ -1,8 +1,8 @@
 extends Node2D
 
-var Score = 0
-var Combo = 0
-
+var Score := 0
+var Combo := 0
+var fcombo := 0.0
 
 var ComboString = "Combo x%s"
 
@@ -24,7 +24,9 @@ func _ready() -> void:
 	set_process(false)
 	
 func _process(delta: float) -> void:
-	Combo = clamp(floor(Combo - 5*delta), 0, 999999999)
+	fcombo = clamp((fcombo - 5*delta), 0, 999999999)
+	print(fcombo)
+	Combo = ceil(fcombo)
 	updateText()
 	
 func updateText():
@@ -34,6 +36,7 @@ func updateText():
 func updateScore(value):
 	set_process(false)
 	Combo += 1
+	fcombo = Combo
 	Score += floor(value * (1+(Combo/5)))
 	updateText()
 	timer.start()

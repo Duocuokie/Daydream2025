@@ -1,0 +1,160 @@
+[gd_scene load_steps=17 format=3 uid="uid://8rhs5vlnao55"]
+
+[ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
+[ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
+[ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
+font = ExtResource("3_pt7f4")
+font_size = 32
+font_color = Color(0.992157, 0.988235, 0.901961, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5hwh"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(0, 1456, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdokk"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(0, 1648, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldnf2"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(0, 1552, 160, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qtnx"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(0, 1744, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1rsd"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(32, 1744, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puxmt"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(832, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm2id"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(864, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(832, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbyfi"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(896, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(864, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkq7b"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(832, 528, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1wio"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(864, 528, 32, 32)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dcqic")
+
+[node name="Title" type="Sprite2D" parent="."]
+z_index = -50
+position = Vector2(320, 180)
+
+[node name="tutorial" type="CanvasLayer" parent="."]
+layer = 0
+visible = false
+
+[node name="Retry" type="ColorRect" parent="tutorial"]
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.741176)
+
+[node name="Label" type="Label" parent="tutorial/Retry"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 96.0
+offset_right = 570.0
+offset_bottom = 128.0
+text = "Hold Left Click to Charge an Attack
+Release to Fire the Attack
+Right Click to Dash if you have 
+Enough Dash Power
+Heal by Using Powerful Attacks
+
+"
+label_settings = SubResource("LabelSettings_lf5a5")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 176.0
+offset_right = 400.0
+offset_bottom = 272.0
+texture_normal = SubResource("AtlasTexture_c5hwh")
+texture_pressed = SubResource("AtlasTexture_fdokk")
+texture_hover = SubResource("AtlasTexture_ldnf2")
+
+[node name="SFX" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 280.0
+offset_right = 584.0
+offset_bottom = 312.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_7qtnx")
+texture_pressed = SubResource("AtlasTexture_v1rsd")
+
+[node name="Music" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 280.0
+offset_right = 632.0
+offset_bottom = 312.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_puxmt")
+texture_pressed = SubResource("AtlasTexture_pm2id")
+
+[node name="Quit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 56.0
+offset_bottom = 344.0
+texture_normal = SubResource("AtlasTexture_e5tw8")
+texture_pressed = SubResource("AtlasTexture_bbyfi")
+texture_hover = SubResource("AtlasTexture_pr36n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="what" type="TextureButton" parent="CanvasLayer"]
+z_index = 100
+offset_left = 480.0
+offset_top = 320.0
+offset_right = 520.0
+offset_bottom = 360.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_hkq7b")
+texture_pressed = SubResource("AtlasTexture_e1wio")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
+[connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CanvasLayer/what" to="." method="_on_what_toggled"]

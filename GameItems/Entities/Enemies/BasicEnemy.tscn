@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du3q827oasw3t" path="res://GameItems/States/Enemy/enemyMove.tscn" id="8_5nwg3"]
 [ext_resource type="PackedScene" uid="uid://v0sl1lra1beu" path="res://GameItems/States/Enemy/enemyDie.tscn" id="9_6rbwg"]
 [ext_resource type="Script" uid="uid://bkg071dhc6y8c" path="res://GameItems/States/Enemy/enemyHurt.gd" id="9_wvs5r"]
-[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="10_m5klc"]
+[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="10_m5klc"]
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="15_5nwg3"]
 [ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="15_wvs5r"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="17_mtapn"]

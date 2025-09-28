@@ -6,6 +6,8 @@ signal bodyCollected
 signal playerDie
 signal enemyDie
 signal playtime
+signal gameStart
+signal gameMenu
 
 static var highscore := 0
 

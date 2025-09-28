@@ -1,10 +1,15 @@
 extends Node
 
 @onready var scene2d: Node2D = %Scene2D
-var current2D : Node2D
+var current2D
+
+const MENU = preload("uid://8rhs5vlnao55")
+const GAME = preload("uid://b0oayulohau4e")
+
 
 func _ready() -> void:
 	current2D = scene2d.get_child(0)
+	SignalBus.gameStart.connect(switch2DScene.bind(GAME))
 
 #Switches to a new scene and deletes old one
 func switch2DScene(newPackedScene : PackedScene) -> void:
