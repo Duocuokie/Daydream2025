@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://camfpsvix4q2y"]
+[gd_scene load_steps=31 format=3 uid="uid://camfpsvix4q2y"]
 
 [ext_resource type="PackedScene" uid="uid://d3s30we6nf7hh" path="res://GameItems/Entities/Enemies/enemy.tscn" id="1_473sd"]
 [ext_resource type="Script" uid="uid://7o6m6fa2rbvy" path="res://GameItems/Entities/Enemies/basicEnemy.gd" id="2_2v2ig"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://80sgbbqpxhxf" path="res://GameItems/Particles/BasicEnemy1HurtParticle.tscn" id="15_5nwg3"]
 [ext_resource type="PackedScene" uid="uid://ba66g27bjnck" path="res://GameItems/Particles/BasicEnemy1DieParticles.tscn" id="15_wvs5r"]
 [ext_resource type="PackedScene" uid="uid://d0155fvsrfl3p" path="res://GameItems/Components/softCollision.tscn" id="17_mtapn"]
+[ext_resource type="AudioStream" uid="uid://c0uoqciqidytl" path="res://GameItems/Entities/Enemies/ehit.ogg" id="18_16p0v"]
+[ext_resource type="AudioStream" uid="uid://bl2wpckmv54y6" path="res://GameItems/Entities/Enemies/edie.ogg" id="19_sf7vc"]
 
 [sub_resource type="Resource" id="Resource_mtapn"]
 script = ExtResource("3_2wxxd")
@@ -160,6 +162,12 @@ actor = NodePath("..")
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource("CircleShape2D_mtapn")
+
+[node name="ehit" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("18_16p0v")
+
+[node name="edie" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource("19_sf7vc")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
