@@ -26,6 +26,8 @@ func _exit_state() -> void:
 
 func _physics_process(delta):
 	var target = importantStats.PlayerPos
+	var dire = enemy.global_position.angle_to_point(target)
+	spr.rotation = dire
 	if target.x > enemy.global_position.x + 640: enemy.global_position.x += 1279
 	elif target.x < enemy.global_position.x - 640: enemy.global_position.x -= 1279
 	if target.y > enemy.global_position.y + 640: enemy.global_position.y += 1279
@@ -40,11 +42,6 @@ func _physics_process(delta):
 				enemy.velocity = bounce_velocity
 		else:
 			enemy.move_and_slide()
-		var lookdir = sign(enemy.global_position.direction_to(target)).x
-		if lookdir != 0:
-			spr.scale.x = lookdir
-		else:
-			spr.scale.x = 1
 	else:
 		emit_signal("PlayerExit")
 		

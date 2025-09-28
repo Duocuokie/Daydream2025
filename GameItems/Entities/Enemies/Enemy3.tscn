@@ -20,8 +20,8 @@
 
 [sub_resource type="Resource" id="Resource_0tl8e"]
 script = ExtResource("3_ugci3")
-maxSpeed = 225
-acceleration = 1000
+maxSpeed = 210
+acceleration = 800
 friction = 2000
 maxHp = 150
 baseDamage = 15

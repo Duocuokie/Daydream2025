@@ -24,7 +24,7 @@ maxSpeed = 80
 acceleration = 2000
 friction = 2000
 maxHp = 50
-baseDamage = 15
+baseDamage = 10
 kbRes = 0.1
 score = 5
 metadata/_custom_type_script = "uid://wbjqgxcagmmk"
@@ -101,7 +101,7 @@ shape = SubResource("CircleShape2D_ynka0")
 [node name="Hitbox" parent="." index="2" instance=ExtResource("3_u536l")]
 collision_layer = 128
 collision_mask = 16
-damage = 15
+damage = 10
 invis = 0.5
 knockback = 600
 
