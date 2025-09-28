@@ -55,6 +55,7 @@ signal playerHit
 @onready var shoot: AudioStreamPlayer = $Shoot
 @onready var woosh: AudioStreamPlayer = $Woosh
 @onready var damage: AudioStreamPlayer2D = $Damage
+@onready var death_particles: GPUParticles2D = $Particles/DeathParticles
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -155,6 +156,7 @@ func _on_recoil_timer_timeout() -> void:
 
 func _on_health_die() -> void:
 	print("die")
+	death_particles.emitting = true
 	SignalBus.playerDie.emit()
 	fsm.change_state(nostate)
 
