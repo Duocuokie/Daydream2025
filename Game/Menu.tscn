@@ -122,7 +122,9 @@ Hold Left Click after attack to travel
 
 towards the attack
 
-Heal by ramming into many enemies"
+Heal by ramming into many enemies
+
+"
 label_settings = SubResource("LabelSettings_lf5a5")
 
 [node name="Player" type="Sprite2D" parent="tutorial/Slide1"]

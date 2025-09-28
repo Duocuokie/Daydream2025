@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwoxar3sgss1r"]
+[gd_scene load_steps=10 format=3 uid="uid://cwoxar3sgss1r"]
 
 [ext_resource type="Script" path="res://GameItems/World/worldscore.gd" id="1_6ew73"]
 [ext_resource type="Texture2D" uid="uid://b0gq2mhb7ujlr" path="res://Textures/backgroundtile.png" id="3_60hvp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 [ext_resource type="PackedScene" uid="uid://br4dxbogvso1x" path="res://Game/Managers/scoreManager.tscn" id="7_tb07u"]
-[ext_resource type="PackedScene" uid="uid://dg37hqoyyumce" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="8_4drrk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tb07u"]
 resource_local_to_scene = true
@@ -14,6 +13,16 @@ shader = ExtResource("4_6ew73")
 shader_parameter/active = false
 shader_parameter/colour = Color(1, 1, 1, 1)
 shader_parameter/trans = 0.8
+
+[sub_resource type="Curve" id="Curve_63vqd"]
+_limits = [0.0, 20.0, 0.0, 180.0]
+_data = [Vector2(0, 2.8365154), 0.0, 0.60045606, 0, 1, Vector2(14.476744, 11.529164), 1.5802721, 0.0, 0, 1, Vector2(23.372093, 11.529164), 0.0, -1.174987, 1, 1, Vector2(28.255814, 5.7908564), 0.0, 0.0, 0, 0, Vector2(128.19513, 5.617979), -0.0017298228, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_68mij"]
+_limits = [0.0, 10.0, 0.0, 180.0]
+_data = [Vector2(21.627907, 0), 0.0, 0.0, 0, 0, Vector2(31.220928, 2.1781397), 0.042714756, 0.042714756, 0, 0, Vector2(43.255814, 2.7929587), 0.0, 0.0, 0, 0, Vector2(43.636368, 7.865169), 0.0, 0.0, 0, 0, Vector2(60.419586, 7.865169), 0.0, 0.0, 0, 0, Vector2(61.04651, 2.929585), 0.0, 0.0, 0, 0, Vector2(68.54651, 1.4608517), 0.0, 0.0, 0, 0, Vector2(124.68293, 4.269664), 0.0, 0.0, 0, 0, Vector2(180, 6.516855), 0.0, 0.0, 0, 0]
+point_count = 9
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -40,14 +49,12 @@ update_rotation = false
 update_scale = false
 
 [node name="Enemies" parent="." instance=ExtResource("5_vx8js")]
+graphs = Array[Curve]([SubResource("Curve_63vqd"), SubResource("Curve_68mij")])
 
 [node name="Spawners" parent="Enemies" index="0"]
 position = Vector2(1, 1)
 
 [node name="ScoreManager" parent="." instance=ExtResource("7_tb07u")]
-
-[node name="Enemy4" parent="." instance=ExtResource("8_4drrk")]
-position = Vector2(312, 194)
 
 [editable path="Player"]
 [editable path="Player/PlayerCharacter"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://camfpsvix4q2y" path="res://GameItems/Entities/Enemies/BasicEnemy.tscn" id="3_568dl"]
 [ext_resource type="PackedScene" uid="uid://32p2h6wbson6" path="res://GameItems/Entities/Enemies/Enemy2.tscn" id="4_w25cc"]
 [ext_resource type="PackedScene" uid="uid://dle1ivpnfuwt1" path="res://GameItems/Entities/Enemies/Enemy3.tscn" id="5_imxao"]
-[ext_resource type="PackedScene" uid="uid://dg37hqoyyumce" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="6_1ykqm"]
+[ext_resource type="PackedScene" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="6_1ykqm"]
 
 [sub_resource type="Curve" id="Curve_63vqd"]
 _limits = [0.0, 20.0, 0.0, 180.0]
@@ -24,7 +24,7 @@ point_count = 9
 
 [sub_resource type="Curve" id="Curve_hsv1l"]
 _limits = [0.0, 10.0, 0.0, 180.0]
-_data = [Vector2(1, 3.3707867), 0.0, 0.0, 0, 0, Vector2(90.42353, 0.12976122), 0.0, 0.0, 0, 0, Vector2(91.48235, 1.3133109), 0.0, 0.0, 0, 0, Vector2(108.63529, 1.367727), 0.0, 0.0, 0, 0, Vector2(116.264595, 3.8644862), 0.0, 0.0, 0, 0, Vector2(130.50584, 3.742991), 0.0, 0.0, 0, 0, Vector2(139.37744, 1.7990656), 0.0, 0.0, 0, 0, Vector2(180, 1.8901873), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(90.42353, 0.12976122), 0.0, 0.0, 0, 0, Vector2(91.48235, 1.3133109), 0.0, 0.0, 0, 0, Vector2(108.63529, 1.367727), 0.0, 0.0, 0, 0, Vector2(116.264595, 3.8644862), 0.0, 0.0, 0, 0, Vector2(130.50584, 3.742991), 0.0, 0.0, 0, 0, Vector2(139.37744, 1.7990656), 0.0, 0.0, 0, 0, Vector2(180, 1.8901873), 0.0, 0.0, 0, 0]
 point_count = 8
 
 [node name="Enemies" type="Node2D"]
