@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://cwoxar3sgss1r"]
+[gd_scene load_steps=9 format=4 uid="uid://cwoxar3sgss1r"]
 
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jpvdc"]
 [ext_resource type="Texture2D" uid="uid://b0gq2mhb7ujlr" path="res://Textures/backgroundtile.png" id="3_60hvp"]
+[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_6ew73"]
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 
@@ -13,6 +14,13 @@ texture = ExtResource("2_jpvdc")
 [sub_resource type="TileSet" id="TileSet_60hvp"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_jpvdc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tb07u"]
+resource_local_to_scene = true
+shader = ExtResource("4_6ew73")
+shader_parameter/active = false
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/trans = 0.8
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -34,6 +42,9 @@ centered = false
 
 [node name="Player" parent="." instance=ExtResource("4_vx8js")]
 position = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Player/PlayerCharacter" index="0"]
+material = SubResource("ShaderMaterial_tb07u")
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player/PlayerCharacter" index="12"]
 remote_path = NodePath("../../../Enemies/Spawners")
