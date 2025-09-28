@@ -1,10 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://wn88rrab2p75"]
+[gd_scene load_steps=17 format=3 uid="uid://wn88rrab2p75"]
 
 [ext_resource type="Script" uid="uid://b411ng3mka0nv" path="res://GameItems/World/world.gd" id="1_jvqa0"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_2cqbv"]
 [ext_resource type="PackedScene" uid="uid://cwoxar3sgss1r" path="res://GameItems/World/World.tscn" id="2_b32cg"]
 [ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_yk3xw"]
 [ext_resource type="AudioStream" uid="uid://br6vmeu10t2ji" path="res://Audio/daydream.ogg" id="5_jvqa0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqbv"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(0, 1744, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaix6"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(32, 1744, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl3ed"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(0, 1776, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d83o"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(32, 1776, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeovw"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(0, 1840, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eteqh"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(64, 1840, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18d8s"]
+atlas = ExtResource("2_2cqbv")
+region = Rect2(32, 1840, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1rcj"]
 atlas = ExtResource("2_2cqbv")
@@ -34,12 +62,38 @@ world = NodePath("World")
 unique_name_in_owner = true
 process_mode = 3
 layer = 100
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
 offset_right = 650.0
 offset_bottom = 373.0
 color = Color(0, 0, 0, 0.53333336)
+
+[node name="SFX" type="TextureButton" parent="Pause"]
+offset_left = 550.0
+offset_top = 320.0
+offset_right = 582.0
+offset_bottom = 352.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_2cqbv")
+texture_pressed = SubResource("AtlasTexture_iaix6")
+
+[node name="Music" type="TextureButton" parent="Pause"]
+offset_left = 597.0
+offset_top = 320.0
+offset_right = 629.0
+offset_bottom = 352.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_hl3ed")
+texture_pressed = SubResource("AtlasTexture_7d83o")
+
+[node name="Quit" type="TextureButton" parent="Pause"]
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 56.0
+offset_bottom = 344.0
+texture_normal = SubResource("AtlasTexture_xeovw")
+texture_pressed = SubResource("AtlasTexture_eteqh")
+texture_hover = SubResource("AtlasTexture_18d8s")
 
 [node name="Retry" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

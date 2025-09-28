@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=25 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
 [ext_resource type="Texture2D" uid="uid://c4yqy3lh6g0ng" path="res://Textures/playerTutorial.png" id="4_k1t3a"]
 [ext_resource type="Texture2D" uid="uid://15vok4jwhxr4" path="res://Textures/enemies.png" id="4_q6y81"]
+[ext_resource type="AudioStream" uid="uid://dajaygh5nlds1" path="res://Audio/dream.ogg" id="7_hnbhi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
 font = ExtResource("3_pt7f4")
@@ -63,14 +64,6 @@ region = Rect2(0, 1776, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm2id"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(32, 1776, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkq7b"]
-atlas = ExtResource("2_dpoqp")
-region = Rect2(832, 528, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1wio"]
-atlas = ExtResource("2_dpoqp")
-region = Rect2(864, 528, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6y81"]
 font = ExtResource("3_pt7f4")
@@ -194,20 +187,20 @@ texture_hover = SubResource("AtlasTexture_ldnf2")
 
 [node name="SFX" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 280.0
-offset_right = 584.0
-offset_bottom = 312.0
+offset_left = 550.0
+offset_top = 320.0
+offset_right = 582.0
+offset_bottom = 352.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_7qtnx")
 texture_pressed = SubResource("AtlasTexture_v1rsd")
 
 [node name="Music" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 599.0
-offset_top = 280.0
-offset_right = 631.0
-offset_bottom = 312.0
+offset_left = 597.0
+offset_top = 320.0
+offset_right = 629.0
+offset_bottom = 352.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_puxmt")
 texture_pressed = SubResource("AtlasTexture_pm2id")
@@ -226,19 +219,6 @@ texture_hover = SubResource("AtlasTexture_pr36n")
 volume_db = -5.0
 autoplay = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="what" type="TextureButton" parent="CanvasLayer"]
-z_index = 100
-offset_left = 480.0
-offset_top = 320.0
-offset_right = 520.0
-offset_bottom = 360.0
-toggle_mode = true
-texture_normal = SubResource("AtlasTexture_hkq7b")
-texture_pressed = SubResource("AtlasTexture_e1wio")
-
 [node name="Stars" type="Sprite2D" parent="."]
 z_index = -4095
 position = Vector2(318, 132.00005)
@@ -247,19 +227,19 @@ texture = ExtResource("4_ijs0n")
 
 [node name="TutorialLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 442.0
-offset_top = 288.0
-offset_right = 503.0
-offset_bottom = 311.0
+offset_left = 440.0
+offset_top = 328.0
+offset_right = 501.0
+offset_bottom = 351.0
 text = "Tutorial"
 label_settings = SubResource("LabelSettings_q6y81")
 
 [node name="Tutorial" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 503.0
-offset_top = 280.0
-offset_right = 535.0
-offset_bottom = 312.0
+offset_left = 501.0
+offset_top = 320.0
+offset_right = 533.0
+offset_bottom = 352.0
 texture_normal = SubResource("AtlasTexture_ijs0n")
 texture_pressed = SubResource("AtlasTexture_q6y81")
 
@@ -274,11 +254,16 @@ offset_right = 650.0
 offset_bottom = 373.0
 color = Color(0, 0, 0, 0.53333336)
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hnbhi")
+volume_db = -4.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="tutorial/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="tutorial/SlideChange" to="." method="_on_slide_change_pressed"]
 [connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
 [connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-[connection signal="toggled" from="CanvasLayer/what" to="." method="_on_what_toggled"]
 [connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
