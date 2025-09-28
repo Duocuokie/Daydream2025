@@ -79,6 +79,8 @@ func _physics_process(delta):
 	var mouseRad = global_position.angle_to_point(get_global_mouse_position())
 	%Sprite2D.rotation = mouseRad
 	
+	%indicator.visible = isShot && bodyProj.hasHit
+		
 	if isShot and global_position.distance_to(bodyProj.global_position) > 300:
 		arrow.show()
 		arrow.self_modulate.a = clamp((global_position.distance_to(bodyProj.global_position) - 300)/200, 0, 1)

@@ -132,6 +132,14 @@ hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 32)
 
+[node name="indicator" type="Sprite2D" parent="Sprite2D"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.2901961)
+z_index = -1
+texture = ExtResource("2_mw144")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1jrtm")
 
@@ -231,8 +239,6 @@ health = NodePath("../Health")
 
 [node name="CollisionShape2D" parent="Hurtbox2" index="0"]
 shape = SubResource("CircleShape2D_i5yfa")
-
-[node name="indicator" type="Sprite2D" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_recoil_timer_timeout"]
