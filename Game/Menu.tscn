@@ -92,7 +92,6 @@ position = Vector2(320, 180)
 [node name="tutorial" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 999999999
-visible = false
 
 [node name="Slide1" type="ColorRect" parent="tutorial"]
 z_index = 9
@@ -111,12 +110,12 @@ text = "Hold Left Click to Charge an Attack
 
 Release to Fire the Attack
 
-Hold Left Click after attack to travel
+If you hit an enemy, hold right click 
 
-towards the attack
+to ram at the chunk
 
 Heal by ramming into many enemies
-
+WASD Movement | | | F11 to Fullscreen
 "
 label_settings = SubResource("LabelSettings_lf5a5")
 
