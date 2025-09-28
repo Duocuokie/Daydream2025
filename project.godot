@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Daydream2025"
+config/name="Lunarena"
 run/main_scene="uid://f67auqymw1hc"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://Textures/icon.svg"
+boot_splash/bg_color=Color(0.12941177, 0.047058824, 0.23529412, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://b3i5w3nd64kff"
+config/icon="uid://dbav7ftiqlmkk"
 
 [autoload]
 

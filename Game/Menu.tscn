@@ -92,7 +92,6 @@ position = Vector2(320, 180)
 [node name="tutorial" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 999999999
-visible = false
 
 [node name="Slide1" type="ColorRect" parent="tutorial"]
 z_index = 9
@@ -101,6 +100,11 @@ offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.741176)
 
+[node name="Player" type="Sprite2D" parent="tutorial/Slide1"]
+position = Vector2(552, 169)
+scale = Vector2(2.1191404, 2.1191404)
+texture = ExtResource("4_k1t3a")
+
 [node name="Label" type="Label" parent="tutorial/Slide1"]
 layout_mode = 0
 offset_left = 57.0
@@ -108,21 +112,16 @@ offset_top = 5.0
 offset_right = 617.0
 offset_bottom = 387.0
 text = "Hold Left Click to Charge an Attack
+Release to Fire a chuck of yourself
 
-Release to Fire the Attack
-
-IF YOU HIT AN ENEMY, hold left click 
-
+You will take more damage when the 
+chunk is out
+If you HIT an ENEMY, HOLD left click 
 to ram at the chunk
 
 Heal by ramming into many enemies
 WASD | F11 to Fullscreen | Esc to pause"
 label_settings = SubResource("LabelSettings_lf5a5")
-
-[node name="Player" type="Sprite2D" parent="tutorial/Slide1"]
-position = Vector2(512, 172.00002)
-scale = Vector2(2.1191404, 2.1191404)
-texture = ExtResource("4_k1t3a")
 
 [node name="Slide2" type="ColorRect" parent="tutorial"]
 visible = false
