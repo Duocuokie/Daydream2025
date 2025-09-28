@@ -8,3 +8,5 @@ class_name EnemyStats
 @export var maxHp : int
 @export var baseDamage : int
 @export var kbRes : float
+
+@export var score := 1
