@@ -22,6 +22,7 @@ func _ready():
 	
 	
 func _enter_state() -> void:
+	print("hit")
 	set_physics_process(true) 
 	anim.play("hit")
 	enemy.emit_signal("enemyHit")

@@ -1,7 +1,7 @@
 extends Area2D
 
 
-
+@export var resist := 0
 var invis = false : set = setInvis
 @onready var timer = $Timer
  
@@ -41,13 +41,15 @@ func _on_hurtBox_invisEnd():
 
 
 func _on_area_entered(area):
-	
-	#if area.get_parent() is Projectile:
-		#if area.get_parent().stats.pierce < 0:
-			#piercing = false
-		#else:
-			#area.get_parent().stats.pierce -= 1
-			
-	if health.health > 0:
-		startInvis(area.invis)
-		health.health -= area.damage
+	if resist == 0:
+		if health.health > 0:
+			startInvis(area.invis)
+			health.health -= area.damage
+	elif resist == 1:
+		if area.get_parent() is PlayerCharacter:
+			startInvis(area.invis)
+			health.health -= area.damage
+	elif resist == 2:
+		if area.get_parent() is BodyProj:
+			startInvis(area.invis)
+			health.health -= area.damage

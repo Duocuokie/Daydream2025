@@ -26,6 +26,7 @@ friction = 2000
 maxHp = 150
 baseDamage = 15
 kbRes = 1.1
+score = 2
 metadata/_custom_type_script = "uid://wbjqgxcagmmk"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8467q"]

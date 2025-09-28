@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cwoxar3sgss1r"]
+[gd_scene load_steps=12 format=4 uid="uid://cwoxar3sgss1r"]
 
 [ext_resource type="Script" uid="uid://cqhlqjho8moih" path="res://GameItems/World/worldscore.gd" id="1_6ew73"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jpvdc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
 [ext_resource type="PackedScene" uid="uid://br4dxbogvso1x" path="res://Game/Managers/scoreManager.tscn" id="7_tb07u"]
+[ext_resource type="PackedScene" uid="uid://dle1ivpnfuwt1" path="res://GameItems/Entities/Enemies/Enemy3.tscn" id="8_4drrk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jpvdc"]
 texture = ExtResource("2_jpvdc")
@@ -60,6 +61,9 @@ update_scale = false
 position = Vector2(1, 1)
 
 [node name="ScoreManager" parent="." instance=ExtResource("7_tb07u")]
+
+[node name="Enemy3" parent="." instance=ExtResource("8_4drrk")]
+position = Vector2(118, 155)
 
 [editable path="Player"]
 [editable path="Player/PlayerCharacter"]
