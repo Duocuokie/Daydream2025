@@ -220,7 +220,6 @@ volume_db = -5.0
 autoplay = true
 
 [node name="Stars" type="Sprite2D" parent="."]
-visible = false
 z_index = -4095
 position = Vector2(320, 180)
 texture = ExtResource("6_hnbhi")
