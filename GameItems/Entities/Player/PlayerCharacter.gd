@@ -34,7 +34,8 @@ var hitCount := 0 : set = hitCountSetter
 var isShot := false : set = isShotSetter
 var charge := 0
 var startBuffer := true
-
+var reeling := false
+var reeltime := false
 
 #signals
 
@@ -54,7 +55,7 @@ signal playerHit
 @onready var nostate: Node = $StateMachine/nostate
 @onready var shoot: AudioStreamPlayer = $Shoot
 @onready var woosh: AudioStreamPlayer = $Woosh
-@onready var damage: AudioStreamPlayer2D = $Damage
+@onready var damage: AudioStreamPlayer = $Damage
 @onready var death_particles: GPUParticles2D = $Particles/DeathParticles
 
 func _ready():
@@ -66,7 +67,7 @@ func _ready():
 	
 func _physics_process(delta):
 	#print(wasNotHolding)
-	if velocity.length_squared() > 150000:
+	if velocity.length_squared() > 150000 || reeling :
 		%Hitbox.set_deferred("monitorable", true)
 		%Hurtbox.set_deferred("monitoring", false)
 	else:
@@ -75,22 +76,32 @@ func _physics_process(delta):
 	
 	importantStats.PlayerPos = global_position
 	var mouseRad = global_position.angle_to_point(get_global_mouse_position())
-	rotation = mouseRad
+	%Sprite2D.rotation = mouseRad
 	if Input.is_action_just_pressed("shoot") and bodyProj.hasHit:
 		woosh.play()
 	if Input.is_action_pressed("shoot"): 
 		if bodyProj.hasHit: # RECOLLECTING
+			if !reeltime:
+				%reeltimer.start()
+				reeltime = true
 			wasNotHolding = false
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 900, 5000*delta)
 			%Sprite2D.frame = 3
+			reeling = true
 			
 		elif !isShot:
+			reeling = false
 			if wasNotHolding:
 				%Sprite2D.frame = 2
 				charge += 100 * delta
 				maxSpeed = slowSpeed
 			else:
 				maxSpeed = baseSpeed
+		else:
+			reeling = false
+	elif reeltime:
+		velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 900, 5000*delta)
+		
 	if Input.is_action_just_released("shoot"):
 		if !isShot && !startBuffer: 
 			%Sprite2D.frame = 0
@@ -129,16 +140,17 @@ func isShotSetter(value):
 		acceleration = sacAcceleration	
 		friction = sacFriction
 	else:
+		%reeltimer.stop()
 		hitCount = 0
 		%Sprite2D.frame = 0
 		maxSpeed = baseSpeed
 		acceleration = recoildAcceleration
 		friction = baseFriction
 		%RecoilTimer.start()
+		reeltime = false
 
 
 func _on_hurtbox_area_entered(area: Hitbox) -> void:
-	print(%Health)
 	damage.play()
 	if %Health.health > 0 && isShot:
 		%Health.health -= area.damage
@@ -164,3 +176,7 @@ func _on_health_die() -> void:
 
 func _on_start_timer_timeout() -> void:
 	startBuffer = false
+
+
+func _on_reeltimer_timeout() -> void:
+	reeltime = false

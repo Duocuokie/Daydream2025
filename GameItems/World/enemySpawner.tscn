@@ -1,23 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc8foashf08ur"]
+[gd_scene load_steps=9 format=3 uid="uid://cc8foashf08ur"]
 
 [ext_resource type="Script" uid="uid://bcckgw7qomptc" path="res://GameItems/World/EnemySpawner.gd" id="1_63vqd"]
 [ext_resource type="PackedScene" uid="uid://dr10bowde1d60" path="res://GameItems/Components/spawnerComponent.tscn" id="2_i0ei4"]
 [ext_resource type="PackedScene" uid="uid://camfpsvix4q2y" path="res://GameItems/Entities/Enemies/BasicEnemy.tscn" id="3_568dl"]
 [ext_resource type="PackedScene" uid="uid://32p2h6wbson6" path="res://GameItems/Entities/Enemies/Enemy2.tscn" id="4_w25cc"]
+[ext_resource type="PackedScene" uid="uid://dle1ivpnfuwt1" path="res://GameItems/Entities/Enemies/Enemy3.tscn" id="5_imxao"]
 
 [sub_resource type="Curve" id="Curve_63vqd"]
 _limits = [0.0, 20.0, 0.0, 120.0]
-_data = [Vector2(0, 2.8365154), 0.0, 0.60045606, 0, 1, Vector2(14.476744, 11.529164), 1.5802721, 0.0, 0, 1, Vector2(23.372093, 11.529164), 0.0, -1.174987, 1, 1, Vector2(28.255814, 5.7908564), 0.0, 0.0, 0, 0, Vector2(120, 10.914346), 0.055845384, 0.0, 1, 0]
+_data = [Vector2(0, 2.8365154), 0.0, 0.60045606, 0, 1, Vector2(14.476744, 11.529164), 1.5802721, 0.0, 0, 1, Vector2(23.372093, 11.529164), 0.0, -1.174987, 1, 1, Vector2(28.255814, 5.7908564), 0.0, 0.0, 0, 0, Vector2(120, 2.9213486), -0.03127727, 0.0, 1, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_68mij"]
 _limits = [0.0, 10.0, 0.0, 120.0]
-_data = [Vector2(21.627907, 0), 0.0, 0.0, 0, 0, Vector2(31.220928, 2.1781397), 0.042714756, 0.042714756, 0, 0, Vector2(43.255814, 2.7929587), 0.0, 0.0, 0, 0, Vector2(44.47674, 5.559643), 0.0, 0.0, 0, 0, Vector2(58.081394, 5.627956), 0.0, 0.0, 0, 0, Vector2(61.04651, 2.929585), 0.0, 0.0, 0, 0, Vector2(68.54651, 1.4608517), 0.0, 0.0, 0, 0, Vector2(120, 4.159222), 0.0, 0.0, 0, 0]
+_data = [Vector2(21.627907, 0), 0.0, 0.0, 0, 0, Vector2(31.220928, 2.1781397), 0.042714756, 0.042714756, 0, 0, Vector2(43.255814, 2.7929587), 0.0, 0.0, 0, 0, Vector2(43.636368, 7.865169), 0.0, 0.0, 0, 0, Vector2(60.419586, 7.865169), 0.0, 0.0, 0, 0, Vector2(61.04651, 2.929585), 0.0, 0.0, 0, 0, Vector2(68.54651, 1.4608517), 0.0, 0.0, 0, 0, Vector2(120, 3.7078648), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="Curve" id="Curve_1ykqm"]
+_limits = [0.0, 10.0, 0.0, 120.0]
+_data = [Vector2(57.595066, 0.16152477), 0.0, 0.0, 0, 0, Vector2(61.3198, 1.6687317), 0.0, 0.0, 0, 0, Vector2(70.79137, 2.1990576), 0.0, 0.0, 0, 0, Vector2(74.98458, 2.1754894), 0.0, 0.0, 0, 0, Vector2(77.82117, 5.0271935), 0.0, 0.0, 0, 0, Vector2(90.40082, 5.1686), 0.0, 0.0, 0, 0, Vector2(91.1408, 1.704133), 0.0, 0.0, 0, 0, Vector2(120, 2.59971), 0.0, 0.0, 0, 0]
 point_count = 8
 
 [node name="Enemies" type="Node2D"]
 script = ExtResource("1_63vqd")
-graphs = Array[Curve]([SubResource("Curve_63vqd"), SubResource("Curve_68mij")])
+graphs = Array[Curve]([SubResource("Curve_63vqd"), SubResource("Curve_68mij"), SubResource("Curve_1ykqm")])
 
 [node name="Spawners" type="Node2D" parent="."]
 
@@ -38,10 +44,20 @@ unique_name_in_owner = true
 position = Vector2(512, 0)
 scene = ExtResource("4_w25cc")
 
+[node name="Enemy3" type="Node2D" parent="Spawners"]
+unique_name_in_owner = true
+
+[node name="spawnerComponent" parent="Spawners/Enemy3" instance=ExtResource("2_i0ei4")]
+position = Vector2(512, 0)
+scene = ExtResource("5_imxao")
+
 [node name="Enemies1" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="Enemies2" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Enemies3" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [connection signal="timeout" from="Spawners/Timer" to="." method="_on_timer_timeout"]

@@ -115,7 +115,7 @@ health = NodePath("../Health")
 shape = SubResource("CircleShape2D_cb4d1")
 
 [node name="Health" parent="." index="4" instance=ExtResource("6_rxv87")]
-maxHealth = 100
+maxHealth = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {

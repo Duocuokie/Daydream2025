@@ -2,11 +2,10 @@ class_name EnemySpawner extends Node2D
 
 @export var graphs : Array[Curve]
 
-@onready var spawners : Array[Node2D] = [%Enemy1, %Enemy2] 
-@onready var pools : Array[Node2D] = [%Enemies1, %Enemies2]
+@onready var spawners : Array[Node2D] = [%Enemy1, %Enemy2, %Enemy3] 
+@onready var pools : Array[Node2D] = [%Enemies1, %Enemies2, %Enemies3]
 
-var time := 0
-
+var time := 25
 func _on_timer_timeout() -> void:
 	for i in len(spawners):
 		if floor(graphs[i].sample(time)) > pools[i].get_child_count():
