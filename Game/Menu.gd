@@ -34,3 +34,8 @@ func _on_sfx_toggled(_toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(SFX, !AudioServer.is_bus_mute(SFX))
 func _on_music_toggled(_toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(Music, !AudioServer.is_bus_mute(Music))
+
+
+func _on_tutorial_pressed() -> void:
+	%Pause.visible = true
+	tutorial.visible = true

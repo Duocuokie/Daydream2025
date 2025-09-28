@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dixojcn2pnsgo"]
 
-[ext_resource type="Script" path="res://Game/Menu.gd" id="1_dcqic"]
+[ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
 [ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
@@ -80,7 +80,8 @@ z_index = -50
 position = Vector2(320, 180)
 
 [node name="tutorial" type="CanvasLayer" parent="."]
-layer = 0
+unique_name_in_owner = true
+layer = 999999999
 visible = false
 
 [node name="Retry" type="ColorRect" parent="tutorial"]
@@ -176,8 +177,20 @@ offset_bottom = 312.0
 texture_normal = SubResource("AtlasTexture_ijs0n")
 texture_pressed = SubResource("AtlasTexture_q6y81")
 
+[node name="Pause" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+offset_right = 650.0
+offset_bottom = 373.0
+color = Color(0, 0, 0, 0.53333336)
+
 [connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
 [connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="CanvasLayer/what" to="." method="_on_what_toggled"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
