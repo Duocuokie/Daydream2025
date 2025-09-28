@@ -3,8 +3,8 @@ extends Node
 @onready var scene2d: Node2D = %Scene2D
 var current2D
 
-const MENU = preload("uid://8rhs5vlnao55")
-const GAME = preload("uid://b0oayulohau4e")
+const MENU = preload("res://Game/Menu.tscn")
+const GAME = preload("res://GameItems/World/2dGame.tscn")
 
 
 func _ready() -> void:
