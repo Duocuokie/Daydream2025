@@ -16,7 +16,7 @@ class_name PlayerCharacter
 
 @export var slowSpeed = 125
 
-@export var recoildAcceleration := 1000
+@export var recoildAcceleration := 1250
 
 var maxSpeed = baseSpeed
 var acceleration = baseAcceleration
@@ -112,8 +112,8 @@ func _physics_process(delta):
 				isShot = true
 				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
-				bodyProj.shoot(global_position, direction, clamp(charge * 6 + 450, 0, 1100))
-				velocity = velocity + -Vector2.from_angle(mouseRad).normalized() * 640
+				bodyProj.shoot(global_position, direction, clamp(charge * 6 + 450, 0, 1000))
+				velocity = velocity + -Vector2.from_angle(mouseRad).normalized() * 590
 			else: # FAKE SHOT
 				pass
 		else: # un on the way
@@ -129,8 +129,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func hitCountSetter(value):
 	hitCount = value
-	if value > 3:
-		%Health.health += clamp(1 * hitCount, 0, 10)
+	if value > 3 && value <= 10:
+		%Health.health += clamp(2 * ceil(hitCount/2.2), 0, 10)
 	
 func isShotSetter(value):
 	isShot = value
@@ -183,7 +183,7 @@ func _on_hurtbox_2_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Enemy4 && !%Hurtbox.monitoring:
 		%Health.health -= area.damage
 		hurterPos = area.global_position
-		hurterDir = (area.global_position - global_position).normalized().rotated(0.5)
+		hurterDir = (area.global_position - global_position).normalized().rotated(1)
 		velocity = hurterDir * area.knockback * -1
 		hurt_particles.emitting = true
 		hurt_particles.restart()
