@@ -31,6 +31,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 	if stateMachine.state != enemyDie:
 		stateMachine.change_state(enemyHurt)
 		enemy_hurt_particles.emitting = true
+		enemy_hurt_particles.restart()
 	
 
 	
