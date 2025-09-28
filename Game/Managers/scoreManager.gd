@@ -9,7 +9,9 @@ var ComboString = "Combo x%s"
 @onready var score: Label = $CanvasLayer/Score
 @onready var combo: Label = $CanvasLayer/Combo
 @onready var timer: Timer = $Timer
+@onready var tenth_timer: Timer = $tenthTimer
 @onready var highscore: Label = $CanvasLayer/HighScore
+@onready var timerL: Label = $CanvasLayer/TimerL
 
 @export var PlayerStats : Resource
 
@@ -40,7 +42,7 @@ func updateScore(value):
 	Score += floor(value * (1+(Combo/5)))
 	updateText()
 	timer.start()
-
+	tenth_timer.start()
 
 func _on_timer_timeout() -> void:
 	set_process(true)
@@ -55,3 +57,7 @@ func saveHighscore():
 		SignalBus.highscore = Score
 	
 	
+
+
+func _on_tenth_timer_timeout() -> void:
+	timerL.text = str(snapped(timer.time_left, 0.1))

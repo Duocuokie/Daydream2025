@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://br4dxbogvso1x"]
 
 [ext_resource type="Script" uid="uid://b0tv6p2i66vxg" path="res://Game/Managers/scoreManager.gd" id="1_5gh72"]
-[ext_resource type="Script" uid="uid://drolqcghmc468" path="res://GameItems/rescources/ImportantStats.gd" id="2_e00ru"]
+[ext_resource type="Script" path="res://GameItems/rescources/ImportantStats.gd" id="2_e00ru"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="2_v7bae"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ae4p3"]
@@ -59,8 +59,22 @@ text = "x200"
 label_settings = SubResource("LabelSettings_fqtmr")
 horizontal_alignment = 2
 
+[node name="TimerL" type="Label" parent="CanvasLayer"]
+z_index = 50
+offset_left = 393.0
+offset_top = 66.0
+offset_right = 633.0
+offset_bottom = 89.0
+text = "2.5"
+label_settings = SubResource("LabelSettings_fqtmr")
+horizontal_alignment = 2
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
 
+[node name="tenthTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="tenthTimer" to="." method="_on_tenth_timer_timeout"]
