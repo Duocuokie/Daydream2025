@@ -98,10 +98,10 @@ layer = 999999999
 
 [node name="Close" type="TextureButton" parent="tutorial"]
 z_index = 99
-offset_left = 503.0
-offset_top = 280.0
-offset_right = 535.0
-offset_bottom = 312.0
+offset_left = 553.0
+offset_top = 215.0
+offset_right = 585.0
+offset_bottom = 247.0
 texture_normal = SubResource("AtlasTexture_e5tw8")
 texture_pressed = SubResource("AtlasTexture_bbyfi")
 texture_hover = SubResource("AtlasTexture_pr36n")
@@ -120,9 +120,13 @@ offset_top = 13.0
 offset_right = 617.0
 offset_bottom = 255.0
 text = "Hold Left Click to Charge an Attack
+
 Release to Fire the Attack
+
 Hold Left Click when released to travel
+
 towards the body part.
+
 Heal by ramming into many enemies
 
 "
@@ -160,10 +164,10 @@ texture = ExtResource("4_q6y81")
 
 [node name="SlideChange" type="TextureButton" parent="tutorial"]
 z_index = 9
-offset_left = 444.0
-offset_top = 280.0
-offset_right = 484.0
-offset_bottom = 320.0
+offset_left = 504.0
+offset_top = 215.0
+offset_right = 544.0
+offset_bottom = 255.0
 texture_normal = SubResource("AtlasTexture_k1t3a")
 texture_pressed = SubResource("AtlasTexture_hnbhi")
 texture_hover = SubResource("AtlasTexture_tofi3")
@@ -233,6 +237,7 @@ scale = Vector2(2.5351563, 2.5351563)
 texture = ExtResource("4_ijs0n")
 
 [node name="Tutorial" type="TextureButton" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 503.0
 offset_top = 280.0
