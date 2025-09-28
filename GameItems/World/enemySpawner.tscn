@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://camfpsvix4q2y" path="res://GameItems/Entities/Enemies/BasicEnemy.tscn" id="3_568dl"]
 [ext_resource type="PackedScene" uid="uid://32p2h6wbson6" path="res://GameItems/Entities/Enemies/Enemy2.tscn" id="4_w25cc"]
 [ext_resource type="PackedScene" uid="uid://dle1ivpnfuwt1" path="res://GameItems/Entities/Enemies/Enemy3.tscn" id="5_imxao"]
-[ext_resource type="PackedScene" uid="uid://dg37hqoyyumce" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="6_1ykqm"]
+[ext_resource type="PackedScene" path="res://GameItems/Entities/Enemies/Enemy4.tscn" id="6_1ykqm"]
 
 [sub_resource type="Curve" id="Curve_63vqd"]
 _limits = [0.0, 20.0, 0.0, 180.0]
