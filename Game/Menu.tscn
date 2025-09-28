@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=20 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
@@ -32,23 +32,23 @@ region = Rect2(32, 1744, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_puxmt"]
 atlas = ExtResource("2_dpoqp")
-region = Rect2(832, 352, 32, 32)
+region = Rect2(0, 1776, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm2id"]
 atlas = ExtResource("2_dpoqp")
-region = Rect2(864, 352, 32, 32)
+region = Rect2(32, 1776, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
 atlas = ExtResource("2_dpoqp")
-region = Rect2(832, 416, 32, 32)
+region = Rect2(0, 1840, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbyfi"]
 atlas = ExtResource("2_dpoqp")
-region = Rect2(896, 416, 32, 32)
+region = Rect2(64, 1840, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
 atlas = ExtResource("2_dpoqp")
-region = Rect2(864, 416, 32, 32)
+region = Rect2(32, 1840, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkq7b"]
 atlas = ExtResource("2_dpoqp")
@@ -57,6 +57,14 @@ region = Rect2(832, 528, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1wio"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(864, 528, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijs0n"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(64, 1744, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6y81"]
+atlas = ExtResource("2_dpoqp")
+region = Rect2(96, 1744, 32, 32)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -96,7 +104,7 @@ Heal by Using Powerful Attacks
 "
 label_settings = SubResource("LabelSettings_lf5a5")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Play" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 240.0
 offset_top = 176.0
@@ -159,7 +167,16 @@ position = Vector2(318, 132.00005)
 scale = Vector2(2.5351563, 2.5351563)
 texture = ExtResource("4_ijs0n")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="Tutorial" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 280.0
+offset_right = 535.0
+offset_bottom = 312.0
+texture_normal = SubResource("AtlasTexture_ijs0n")
+texture_pressed = SubResource("AtlasTexture_q6y81")
+
+[connection signal="pressed" from="Play" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="SFX" to="." method="_on_sfx_toggled"]
 [connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
