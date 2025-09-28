@@ -146,6 +146,7 @@ func _on_hurtbox_area_entered(area: Hitbox) -> void:
 	hurterDir = (area.global_position - global_position).normalized()
 	velocity = hurterDir * area.knockback * -1
 	hurt_particles.emitting = true
+	hurt_particles.restart()
 	%Flash.play("flash", 0, 1/area.invis)
 
 
