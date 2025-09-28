@@ -1,10 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://dixojcn2pnsgo"]
+[gd_scene load_steps=26 format=3 uid="uid://dixojcn2pnsgo"]
 
 [ext_resource type="Script" uid="uid://df52gv8cagef3" path="res://Game/Menu.gd" id="1_dcqic"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_dpoqp"]
 [ext_resource type="FontFile" uid="uid://dunj4j5eh7puw" path="res://Textures/DigitalDisco.ttf" id="3_pt7f4"]
 [ext_resource type="Texture2D" uid="uid://deb0sjxvlggrn" path="res://Textures/stars.png" id="4_ijs0n"]
+[ext_resource type="Texture2D" uid="uid://c4yqy3lh6g0ng" path="res://Textures/playerTutorial.png" id="4_k1t3a"]
 [ext_resource type="Texture2D" uid="uid://15vok4jwhxr4" path="res://Textures/enemies.png" id="4_q6y81"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
+font = ExtResource("3_pt7f4")
+font_size = 32
+font_color = Color(0.992157, 0.988235, 0.901961, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5tw8"]
 atlas = ExtResource("2_dpoqp")
@@ -17,11 +23,6 @@ region = Rect2(64, 1840, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr36n"]
 atlas = ExtResource("2_dpoqp")
 region = Rect2(32, 1840, 32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_lf5a5"]
-font = ExtResource("3_pt7f4")
-font_size = 32
-font_color = Color(0.992157, 0.988235, 0.901961, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1t3a"]
 atlas = ExtResource("2_dpoqp")
@@ -100,16 +101,6 @@ unique_name_in_owner = true
 layer = 999999999
 visible = false
 
-[node name="Close" type="TextureButton" parent="tutorial"]
-z_index = 99
-offset_left = 553.0
-offset_top = 215.0
-offset_right = 585.0
-offset_bottom = 247.0
-texture_normal = SubResource("AtlasTexture_e5tw8")
-texture_pressed = SubResource("AtlasTexture_bbyfi")
-texture_hover = SubResource("AtlasTexture_pr36n")
-
 [node name="Slide1" type="ColorRect" parent="tutorial"]
 z_index = 9
 offset_right = 640.0
@@ -135,6 +126,11 @@ Heal by ramming into many enemies
 
 "
 label_settings = SubResource("LabelSettings_lf5a5")
+
+[node name="Player" type="Sprite2D" parent="tutorial/Slide1"]
+position = Vector2(512, 180.00002)
+scale = Vector2(2.1191404, 2.1191404)
+texture = ExtResource("4_k1t3a")
 
 [node name="Slide2" type="ColorRect" parent="tutorial"]
 visible = false
@@ -166,12 +162,22 @@ position = Vector2(180, 227)
 scale = Vector2(1.890625, 1.890625)
 texture = ExtResource("4_q6y81")
 
+[node name="Close" type="TextureButton" parent="tutorial"]
+z_index = 99
+offset_left = 599.0
+offset_top = 215.0
+offset_right = 631.0
+offset_bottom = 247.0
+texture_normal = SubResource("AtlasTexture_e5tw8")
+texture_pressed = SubResource("AtlasTexture_bbyfi")
+texture_hover = SubResource("AtlasTexture_pr36n")
+
 [node name="SlideChange" type="TextureButton" parent="tutorial"]
 z_index = 9
-offset_left = 504.0
-offset_top = 215.0
-offset_right = 544.0
-offset_bottom = 255.0
+offset_left = 555.0
+offset_top = 216.0
+offset_right = 595.0
+offset_bottom = 256.0
 texture_normal = SubResource("AtlasTexture_k1t3a")
 texture_pressed = SubResource("AtlasTexture_hnbhi")
 texture_hover = SubResource("AtlasTexture_tofi3")
@@ -198,9 +204,9 @@ texture_pressed = SubResource("AtlasTexture_v1rsd")
 
 [node name="Music" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 600.0
+offset_left = 599.0
 offset_top = 280.0
-offset_right = 632.0
+offset_right = 631.0
 offset_bottom = 312.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_puxmt")
