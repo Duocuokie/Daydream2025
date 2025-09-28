@@ -4,7 +4,7 @@ extends Node
 var current2D
 
 const MENU = preload("res://Game/Menu.tscn")
-const GAME = preload("res://GameItems/World/2dGame.tscn")
+const GAME = preload("uid://wn88rrab2p75")
 
 
 func _ready() -> void:
