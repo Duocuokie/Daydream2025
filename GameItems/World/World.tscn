@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://cwoxar3sgss1r"]
+[gd_scene load_steps=9 format=4 uid="uid://cwoxar3sgss1r"]
 
-[ext_resource type="Script" uid="uid://cqhlqjho8moih" path="res://GameItems/World/worldscore.gd" id="1_6ew73"]
 [ext_resource type="Texture2D" uid="uid://dte6o2elxgr5i" path="res://Textures/spriteSheet.png" id="2_jpvdc"]
 [ext_resource type="Texture2D" uid="uid://b0gq2mhb7ujlr" path="res://Textures/backgroundtile.png" id="3_60hvp"]
+[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="4_6ew73"]
 [ext_resource type="PackedScene" uid="uid://b3m68cqxlv1jb" path="res://GameItems/Entities/Player/player.tscn" id="4_vx8js"]
-[ext_resource type="Shader" uid="uid://c6apxvdtq7xq8" path="res://Shaders/flashwite.gdshader" id="5_tb07u"]
 [ext_resource type="PackedScene" uid="uid://cc8foashf08ur" path="res://GameItems/World/enemySpawner.tscn" id="5_vx8js"]
-[ext_resource type="PackedScene" uid="uid://br4dxbogvso1x" path="res://Game/Managers/scoreManager.tscn" id="7_tb07u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jpvdc"]
 texture = ExtResource("2_jpvdc")
@@ -17,16 +15,15 @@ texture = ExtResource("2_jpvdc")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_jpvdc")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4drrk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tb07u"]
 resource_local_to_scene = true
-shader = ExtResource("5_tb07u")
+shader = ExtResource("4_6ew73")
 shader_parameter/active = false
 shader_parameter/colour = Color(1, 1, 1, 1)
 shader_parameter/trans = 0.8
 
 [node name="World" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_6ew73")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -47,7 +44,7 @@ centered = false
 position = Vector2(1, 1)
 
 [node name="Sprite2D" parent="Player/PlayerCharacter" index="0"]
-material = SubResource("ShaderMaterial_4drrk")
+material = SubResource("ShaderMaterial_tb07u")
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Player/PlayerCharacter" index="12"]
 remote_path = NodePath("../../../Enemies/Spawners")
@@ -58,8 +55,6 @@ update_scale = false
 
 [node name="Spawners" parent="Enemies" index="0"]
 position = Vector2(1, 1)
-
-[node name="ScoreManager" parent="." instance=ExtResource("7_tb07u")]
 
 [editable path="Player"]
 [editable path="Player/PlayerCharacter"]

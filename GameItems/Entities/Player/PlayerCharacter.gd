@@ -52,6 +52,8 @@ signal playerHit
 @onready var shoot_particles: GPUParticles2D = $Particles/ShootParticles
 @onready var hurt_particles: GPUParticles2D = $Particles/HurtParticles
 @onready var nostate: Node = $StateMachine/nostate
+@onready var shoot: AudioStreamPlayer = $Shoot
+@onready var woosh: AudioStreamPlayer = $Woosh
 
 func _ready():
 	AnimTree.set("parameters/Idle/blend_position", Vector2(0, 0.1))
@@ -72,11 +74,14 @@ func _physics_process(delta):
 	importantStats.PlayerPos = global_position
 	var mouseRad = global_position.angle_to_point(get_global_mouse_position())
 	rotation = mouseRad
+	if Input.is_action_just_pressed("shoot") and bodyProj.hasHit:
+		woosh.play()
 	if Input.is_action_pressed("shoot"): 
 		if bodyProj.hasHit: # RECOLLECTING
 			wasNotHolding = false
 			velocity = velocity.move_toward(global_position.direction_to(bodyProj.global_position)* 900, 5000*delta)
 			%Sprite2D.frame = 3
+			
 		elif !isShot:
 			if wasNotHolding:
 				%Sprite2D.frame = 2
@@ -88,6 +93,7 @@ func _physics_process(delta):
 		if !isShot && !startBuffer: 
 			%Sprite2D.frame = 0
 			if wasNotHolding: # SHOOT
+				shoot.play()
 				isShot = true
 				shoot_particles.emitting = true
 				var direction = global_position.direction_to(get_global_mouse_position())
@@ -95,8 +101,9 @@ func _physics_process(delta):
 				velocity = velocity + -Vector2.from_angle(mouseRad).normalized() * 640
 			else: # FAKE SHOT
 				pass
-		else: # ON THE WAY
+		else: # un on the way
 			$Sprite2D.frame = 1
+			
 		
 		charge = 0
 		wasNotHolding = true
