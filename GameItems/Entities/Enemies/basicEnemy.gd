@@ -9,6 +9,9 @@ class_name BasicEnemy extends Enemy
 @onready var enemyHurt = $StateMachine/enemyHurt
 @onready var sprite: Sprite2D = $Sprite2D
 
+@onready var ehit: AudioStreamPlayer = $ehit
+@onready var edie: AudioStreamPlayer = $edie
+
 @export var enemy_die_particles : GPUParticles2D
 @export var enemy_hurt_particles : GPUParticles2D
 
@@ -24,6 +27,7 @@ func _physics_process(_delta):
 func _on_hurtbox_area_entered(area : Area2D):
 	if area.get_parent() is PlayerCharacter:
 		area.get_parent().hitCount += 1
+		ehit.play()
 	hurterDir = (area.global_position - global_position).normalized()
 	hurterPos = area.global_position
 	enemyHurt.kbres = stats.kbRes
@@ -49,6 +53,7 @@ func _on_hurtbox_area_entered(area : Area2D):
 
 
 func _on_health_die():
+	edie.play()
 	enemy_die_particles.emitting = true
 	hitbox.set_deferred("monitorable", false) 
 	#hits(hurterPos)
