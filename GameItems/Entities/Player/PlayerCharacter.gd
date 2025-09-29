@@ -151,16 +151,17 @@ func isShotSetter(value):
 
 
 func _on_hurtbox_area_entered(area: Hitbox) -> void:
-	print(%Health)
-	damage.play()
-	if %Health.health > 0 && isShot:
-		%Health.health -= area.damage
-	hurterPos = area.global_position
-	hurterDir = (area.global_position - global_position).normalized().rotated(0.5)
-	velocity = hurterDir * area.knockback * -1
-	hurt_particles.emitting = true
-	hurt_particles.restart()
-	%Flash.play("flash", 0, 1/area.invis)
+	if not (isShot && bodyProj.hasHit && Input.is_action_pressed("shoot")):
+		print(%Health)
+		damage.play()
+		if %Health.health > 0 && isShot:
+			%Health.health -= area.damage
+		hurterPos = area.global_position
+		hurterDir = (area.global_position - global_position).normalized().rotated(0.5)
+		velocity = hurterDir * area.knockback * -1
+		hurt_particles.emitting = true
+		hurt_particles.restart()
+		%Flash.play("flash", 0, 1/area.invis)
 
 
 
